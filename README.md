@@ -33,6 +33,12 @@
     and denial-of-service attack (drop,kill packets from source), https/ssh downgrade attacks, also
     gives you the ability to build/compile your etter filter from scratch and lunch it truth morpheus.
 
+# Framework limitations
+    1º - morpheus will not work if target system its protected againt ARP poison attacks
+    2º - target system sometimes needs to clear net cache to arp poison be effective
+    3º - replacement string must have the same length as original string to replace
+         "eg. replace("word_hello", "hello_word"); <-- the same number of leters"
+
 # Dependencies
     ettercap, zenity
 
