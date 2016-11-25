@@ -1,0 +1,54 @@
+##############################################################################
+#                                                                            #
+#    The following config file will allow you to customize settings within   #
+#    MORPHEUS tool, The lines that Do not have comment code ("#") are the    #
+#    fields you want to toy with. There are additional options, read the     #
+#    comments For additional config settings.                                #
+#                                                                            #
+#    CHANGING THIS SETTINGS WILL AFFECT 'morpheus.sh' WAY OF WORKING         #
+#                                                                            #
+##############################################################################
+
+
+
+
+### prompt displays available
+# chose your own 'personalized prompt'.                                       
+# -▷   -▶   '>'  ☭   ✿   ☯   ☠   ☆   ➽
+------------------
+PROMPT_DISPLAY=-▷ 
+------------------
+
+
+
+
+### OUTPUT MORPHEUS SCANS TO A LOGFILE?
+# this setting will record ettercap
+# reports into morpheus logs folder.
+# accepted values are: YES or NO
+-----------------
+WRITE_LOGFILES=NO
+-----------------
+
+
+
+
+### ENABLE IPV6 ARP POISON?
+# by default morpheus runs againts IPv4
+# accepted values are: YES or NO
+-----------
+USE_IPV6=NO
+-----------
+
+
+
+
+### ETTERCAP INSTALL PATH
+# just change the next values to point to
+# your ettercap install folders.
+-----------------------------------
+ETTER_DNS=/etc/ettercap/etter.dns
+ETTER_CONF=/etc/ettercap/etter.conf
+-----------------------------------
+
+
