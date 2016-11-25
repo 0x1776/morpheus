@@ -28,12 +28,10 @@
     4º - modified packet forward back to target
 
 # What can we acomplish by using ettercap filters?
-    morpheus ships with a collection of etter filters writen be me
-    to acomplish various tasks like: replacing images in webpage,
-    replace text in webpages, inject payloads using html <form> tag
-    and denial-of-service attack (drop,kill packets from source),
-    this tool also gives you the ability to build/compile your etter
-    filter from scratch and lunch it truth morpheus framework..
+    morpheus ships with a collection of etter filters writen be me to acomplish various tasks:
+    replacing images in webpage, replace text in webpages, inject payloads using html <form> tag
+    and denial-of-service attack (drop,kill packets from source), this tool also gives you the
+    ability to build/compile your etter filter from scratch and lunch it truth morpheus.
 
 # Dependencies
     ettercap, zenity
