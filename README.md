@@ -22,10 +22,10 @@
     packet back to the host that have request for it (tcp/ip hijacking).
 
     work flow:
-    1º - poison local lan (mitm)
-    2º - target requests webpage
+    1º - arp poison local lan (mitm)
+    2º - target requests webpage from network
     3º - attacker modifies webpage response
-    4º - modified packet forward back to target
+    4º - modified packet its forward back to target
 
 # What can we acomplish by using filters?
     morpheus ships with a collection of etter filters writen be me to acomplish various tasks:
