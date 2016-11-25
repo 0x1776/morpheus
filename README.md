@@ -1,3 +1,9 @@
+[![Version](https://img.shields.io/badge/MORPHEUS-1.0-brightgreen.svg?maxAge=259200)]()
+[![Stage](https://img.shields.io/badge/Release-alpha-red.svg)]()
+[![Build](https://img.shields.io/badge/Supported_OS-linux-orange.svg)]()
+[![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]()
+[![AUR](https://img.shields.io/aur/license/yaourt.svg)]()
+
 # Morpheus - automated ettercap TCP/IP Hijacking tool
     Version release : v1.0-Alpha
     Author : pedro ubuntu  [ r00t-3xp10it ]
