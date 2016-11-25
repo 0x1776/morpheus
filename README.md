@@ -35,8 +35,9 @@
 
 # Framework limitations
     1º - morpheus will not work if target system its protected againt ARP poison attacks
-    2º - target system sometimes needs to clear net cache to arp poison be effective
-    3º - replacement string must have the same length as original string to replace
+    2º - mopheus will fail if browser target as installed any addon to protect againts mitm
+    3º - target system sometimes needs to clear net cache to arp poison be effective
+    4º - replacement string must have the same length as original string to replace
          "eg. replace("word_hello", "hello_word"); <-- the same number of leters"
 
 # Dependencies
