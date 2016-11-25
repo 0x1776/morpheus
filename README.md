@@ -34,6 +34,8 @@
     target browser traffic to another ip address (domain) and also gives you the ability to build
     compile your filter from scratch and lunch it through morpheus framework.
 
+    "Using etter filters allow us to do mutch more than this, but unfortunately i dont know more :("
+
 # Framework limitations
     1º - morpheus will fail if target system its protected againt ARP poison attacks
     2º - morpheus will fail if browser target as installed addon's againts arp/mitm
