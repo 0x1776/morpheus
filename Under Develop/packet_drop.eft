@@ -1,8 +1,8 @@
 ############################################################################
 #                                                                          #
-#  nr.filter -- filter source file                                         #
-#  Based on work by Irongeek and others http://www.irongeek.com/           #
-#                                                                          #   
+#  HTTPS Request/Response Filter                                           #
+#  based on code from ALoR & NaGA                                          #
+#                                                                          #
 #  This program is free software; you can redistribute it and/or modify    #
 #  it under the terms of the GNU General Public License as published by    #
 #  the Free Software Foundation; either version 2 of the License, or       #
@@ -10,8 +10,14 @@
 #                                                                          #
 ############################################################################
 
+##
+#  This filter will drop (kill) any packet send
+#  to the specified ip address (source ip addr)
+##
+
 # Filter only a specific ip address:
 if (ip.src == '192.168.0.2') {
-drop();
+ msg("[Morpheus Filter] packet droped from source...\n");
+ drop();
 kill();
 }

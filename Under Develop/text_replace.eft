@@ -1,8 +1,8 @@
 ############################################################################
 #                                                                          #
-#  nr.filter -- filter source file                                         #
-#  Based on work by Irongeek and others http://www.irongeek.com/           #
-#                                                                          #   
+#  HTTPS Request/Response Filter                                           #
+#  based on code from ALoR & NaGA                                          #
+#                                                                          #
 #  This program is free software; you can redistribute it and/or modify    #
 #  it under the terms of the GNU General Public License as published by    #
 #  the Free Software Foundation; either version 2 of the License, or       #
@@ -10,10 +10,43 @@
 #                                                                          #
 ############################################################################
 
+##
+#  This filter will replace certain words in tcp packet
+#  requests befor forward the packet back to target host.
+##
 
-# Replacing text in a packet:
-if (ip.proto == TCP && search(DATA.data, "lol")){
-replace("lol", "smh");
-msg("filter ran");
 
+#####################
+## Replace Content ##
+#####################
+# replace the word 'a' by 'f'
+if (ip.proto == TCP && search(DATA.data, "a")){
+ replace("a", "f");
+ msg("[Morpheus Filter] A zapped from request...\n");
+}
+
+# replace the word 'e' by 'h'
+if (ip.proto == TCP && search(DATA.data, "e")){
+ replace("e", "h");
+ msg("[Morpheus Filter] E zapped from request...\n");
+}
+
+
+# replace the word 'i' by 'k'
+if (ip.proto == TCP && search(DATA.data, "i")){
+ replace("i", "k");
+ msg("[Morpheus Filter] I zapped from request...\n");
+}
+
+
+# replace the word 'o' by 's'
+if (ip.proto == TCP && search(DATA.data, "o")){
+ replace("o", "s");
+ msg("[Morpheus Filter] O zapped from request...\n");
+}
+
+# replace the word 'u' by 'x'
+if (ip.proto == TCP && search(DATA.data, "u")){
+ replace("u", "x");
+ msg("[Morpheus Filter] U zapped from request...\n");
 }

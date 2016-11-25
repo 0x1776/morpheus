@@ -1,8 +1,8 @@
 ############################################################################
 #                                                                          #
-#  nr.filter -- filter source file                                         #
-#  Based on work by Irongeek and others http://www.irongeek.com/           #
-#                                                                          #   
+#  HTTPS Request/Response Filter                                           #
+#  based on code from ALoR & NaGA                                          #
+#                                                                          #
 #  This program is free software; you can redistribute it and/or modify    #
 #  it under the terms of the GNU General Public License as published by    #
 #  the Free Software Foundation; either version 2 of the License, or       #
@@ -10,15 +10,24 @@
 #                                                                          #
 ############################################################################
 
+##
+#  This filter will downgrade SSH requests from version 1.99
+#  to 1.51 also verifies what version target its using.
+##
+
+
+#####################
+## Replace Content ##
+#####################
 if (ip.proto == TCP && tcp.src == 22) {
    if ( replace("SSH-1.99", "SSH-1.51") ) {
-    msg("[SSH Filter] SSH downgraded from version 2 to 1\n");
+    msg("[Morpheus Filter] SSH downgraded from version 2 to 1\n");
    } else {
    if ( search(DATA.data, "SSH-2.00") ) {
-    msg("[SSH Filter] Server supports only SSH version 2\n");
+    msg("[Morpheus Filter] Server supports only SSH version 2\n");
    } else {
    if ( search(DATA.data, "SSH-1.51") ) {
-    msg("[SSH Filter] Server already supports only version 1\n");
+    msg("[Morpheus Filter] Server already supports only version 1\n");
     }
    }
   }
