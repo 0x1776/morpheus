@@ -16,10 +16,15 @@
     consent is illegal and punished by law.
 
 # Framework description
+    morpheus.sh framework automates tcp/ip packet manipulation tasks by using
     ettercap filters to manipulate tcp/udp requests under MitM attacks replacing
     the http packet contents by our own contents befor sending the http packet
-    back to the host that have request for it (TCP/IP hijacking)..
+    back to the host that have request for it (tcp/ip hijacking)
 
+    Diagram:
+     1º - target requests webpage
+     2º - attacker modifies webpage response
+     3º - modified packet forward back to target
 
 
 # Build msfvenom binary
