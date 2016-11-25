@@ -30,8 +30,9 @@
 # What can we acomplish by using filters?
     morpheus ships with a collection of etter filters writen be me to acomplish various tasks:
     replacing images in webpages, replace text in webpages, inject payloads using html <form> tag
-    denial-of-service attack (drop,kill packets from source), https/ssh downgrade attacks, and also
-    gives you the ability to build/compile your filter from scratch and lunch it through morpheus.
+    denial-of-service attack (drop,kill packets from source), https/ssh downgrade attacks, redirect
+    target browser traffic to another ip address (domain) and also gives you the ability to build
+    compile your filter from scratch and lunch it through morpheus framework.
 
 # Framework limitations
     1º - morpheus will fail if target system its protected againt ARP poison attacks
