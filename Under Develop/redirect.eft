@@ -22,7 +22,7 @@
 if (ip.proto == TCP && tcp.dst == 80){
    if (search(DATA.data, "Accept-Encoding")){
     replace("Accept-Encoding", "Accept-Rubbish!");
-    msg("[Morpheus Filter] Encoding zapped.\n");
+    msg("[Morpheus Filter] Encoding zapped.");
    }
 }
 

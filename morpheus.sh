@@ -1,24 +1,16 @@
 #!/bin/sh
+###
+# morpheus - automated ettercap TCP/IP Hijacking tool
+# Author: pedr0 Ubuntu [r00t-3xp10it] version: 1.2
+# Suspicious-Shell-Activity (SSA) RedTeam develop @2016
+# codename: blue_dreams [ GPL licensed ]
+###
 
-
+###
 # Resize terminal windows size befor running the tool (gnome terminal)
 # Special thanks to h4x0r Milton@Barra for this little piece of heaven! :D
-resize -s 29 86 > /dev/null
+resize -s 30 86 > /dev/null
 # inicio
-
-
-
-
-# ---------------------
-# check if user is root
-# ---------------------
-if [ $(id -u) != "0" ]; then
-echo "[☠ ] we need to be root to run this script..."
-echo "[☠ ] execute [ sudo ./venom.sh ] on terminal"
-exit
-else
-echo "root user" > /dev/null 2>&1
-fi
 
 
 
@@ -39,9 +31,40 @@ Reset="${Escape}[0m";
 
 
 
+Colors;
+# ---------------------
+# check if user is root
+# ---------------------
+if [ $(id -u) != "0" ]; then
+echo ${RedF}[☠]${white} we need to be root to run this script...${Reset};
+echo ${RedF}[☠]${white} execute [ sudo ./venom.sh ] on terminal ${Reset};
+exit
+else
+echo "root user" > /dev/null 2>&1
+fi
 
+
+apc=`which ettercap`
+if [ "$?" -eq "0" ]; then
+echo "ettercap found" > /dev/null 2>&1
+else
+echo ""
+echo ${RedF}[☠]${white} ettercap '->' not found! ${Reset};
+sleep 1
+echo ${RedF}[☠]${white} This script requires ettercap to work! ${Reset};
+echo ${RedF}[☠]${white} Please run: sudo apt-get install ettercap ${Reset};
+echo ${RedF}[☠]${white} to install missing dependencies... ${Reset};
+echo ""
+exit
+fi
+
+
+
+
+# ------------------------------------------
 # pass arguments to script [ -h ]
 # we can use: ./morpheus.sh -h for help menu
+# ------------------------------------------
 while getopts ":h" opt; do
   case $opt in
     h)
@@ -63,6 +86,7 @@ cat << !
    https/ssh downgrade attacks, redirect target browser traffic to another ip address
    and also gives you the ability to build/compile your filter from scratch and lunch
    it through morpheus framework.
+
 !
    exit
     ;;
@@ -79,8 +103,15 @@ done
 # ---------------------
 # Variable declarations
 # ---------------------
-V3R="1.1" # module version number
+dtr=`date | awk '{print $4}'`        # grab current hour
+V3R="1.2"                            # module version number
 DiStR0=`awk '{print $1}' /etc/issue` # grab distribution -  Ubuntu or Kali
+IPATH=`pwd`                          # grab morpheus.sh install path
+PrompT=`cat $IPATH/settings | egrep -m 1 "PROMPT_DISPLAY" | cut -d '=' -f2` > /dev/null 2>&1
+LoGs=`cat $IPATH/settings | egrep -m 1 "WRITE_LOGFILES" | cut -d '=' -f2` > /dev/null 2>&1
+IpV=`cat $IPATH/settings | egrep -m 1 "USE_IPV6" | cut -d '=' -f2` > /dev/null 2>&1
+Edns=`cat $IPATH/settings | egrep -m 1 "ETTER_DNS" | cut -d '=' -f2` > /dev/null 2>&1
+Econ=`cat $IPATH/settings | egrep -m 1 "ETTER_CONF" | cut -d '=' -f2` > /dev/null 2>&1
 
 
 
@@ -101,19 +132,36 @@ case $DiStR0 in
   esac
 clear
 
-ping -c 3 www.google.com | zenity --progress --pulsate --title "☠ PLEASE WAIT ☠" --text="Storing current IP settings" --percentage=0 --auto-close --width 300 > /dev/null 2>&1
+ping -c 3 www.google.com | zenity --progress --pulsate --title "☠ MORPHEUS ☠" --text="Storing current IP settings" --percentage=0 --auto-close --width 300 > /dev/null 2>&1
 
 
 
 
 
 
+# -----------------
+# START OF FUNTIONS
+# -----------------
 
 
 sh_stage1 () {
-echo ""
-echo "[☠] stage 1 running..."
+cat << !
+---
+-- This module builds exe-service payloads to be
+-- deployed onto windows service control manager (SCM)
+-- module: [home]/shell/aux/deploy_service_payload.rb
+---
+!
 sleep 2
+
+
+rUn=$(zenity --question --title="☠ MORPHEUS ☠" --text "Execute module?" --width 330) > /dev/null 2>&1
+if [ "$?" -eq "0" ]; then
+echo "good" > /dev/null 2>&1
+else
+  echo ${RedF}[x]${white} Abort${RedF}!${Reset};
+  sleep 2
+fi
 }
 
 
@@ -146,8 +194,10 @@ cat << !
     ██║╚██╔╝██║██║   ██║██╔══██╗██╔═══╝ ██╔══██║██╔══╝  ██║   ██║╚════██║
     ██║ ╚═╝ ██║╚██████╔╝██║  ██║██║     ██║  ██║███████╗╚██████╔╝███████║
     ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚══════╝
+    VERSION:$V3R DISTRO:$DiStR0 IP:$IP INTERFACE:$InT3R IPv6:$IpV
+
     +--------+----------------------------------------------------------+
-    | OPTION |         DESCRIPTION(filters)                             |
+    | OPTION |                DESCRIPTION(filters)                      |
     +--------+----------------------------------------------------------+
     |   1    -  Drop all packets from source ip addr (packet drop)      |
     |   2    -  Redirect browser traffic to another ip addr (domain)    |
@@ -159,7 +209,6 @@ cat << !
     |   8    -  Inject backdoor into html request (executable.exe)      |
     |   9    -  Write your own filter and use morpheus to inject it     |
     |                                                                   |
-    |   F    -  FAQ (frequent ask questions)                            |
     |   E    -  exit/close Morpheus tool                                |
     +-------------------------------------------------------------------+
                                                        SSA-RedTeam@2016_|
@@ -168,17 +217,12 @@ echo ${Reset};
 echo ${BlueF}[☠]${white} tcp/udp hijacking tool${RedF}! ${Reset};
 sleep 1
 echo ${BlueF}[➽]${white} Chose Your Option[filter]${RedF}: ${Reset};
+echo -n "$PrompT"
 read choice
 case $choice in
 1) sh_stage1 ;;
-f) sh_FAQ ;;
-F) sh_FAQ ;;
 e) sh_exit ;;
 E) sh_exit ;;
--h) sh_FAQ ;;
---help) sh_FAQ ;;
--help) sh_FAQ ;;
-help) sh_FAQ ;;
 *) echo "\"$choice\": is not a valid Option"; sleep 2 ;;
 esac
 done

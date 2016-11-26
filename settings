@@ -6,7 +6,7 @@
 #    comments For additional config settings.                                #
 #                                                                            #
 #    CHANGING THIS SETTINGS WILL AFFECT 'morpheus.sh' WAY OF WORKING         #
-#                                                                            #
+#    WARNING: remmenber that values to be changed are case sensitive         #
 ##############################################################################
 
 
@@ -35,10 +35,10 @@ WRITE_LOGFILES=NO
 
 ### ENABLE IPV6 ARP POISON?
 # by default morpheus runs againts IPv4
-# accepted values are: YES or NO
------------
-USE_IPV6=NO
------------
+# accepted values are: ACTIVE or DISABLED
+----------------
+USE_IPV6=DISABLED
+----------------
 
 
 

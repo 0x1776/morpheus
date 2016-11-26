@@ -12,12 +12,20 @@
 
 ##
 #  This filter will drop (kill) any packet send
-#  to the specified ip address (source ip addr)
+#  to the specified ip address (target ip addr)
 ##
 
-# Filter only a specific ip address:
+
+# Filter only from source
 if (ip.src == '192.168.0.2') {
- msg("[Morpheus Filter] packet droped from source...\n");
+ msg("[Morpheus Filter] packet droped from source...");
+ drop();
+kill();
+}
+
+# Filter only from destination
+if (ip.dst == '192.168.0.2') {
+ msg("[Morpheus Filter] packet droped from destination...\n");
  drop();
 kill();
 }

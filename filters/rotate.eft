@@ -25,7 +25,7 @@
 if (ip.proto == TCP && tcp.src == 80) {
   if (search(DATA.data, "Accept-Encoding")) {
     replace("Accept-Encoding","Accept-Nothing!");
-    msg("[Morpheus Filter] Encoding zapped.\n");
+    msg("[Morpheus Filter] Encoding zapped.");
   }
 }
 
