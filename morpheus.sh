@@ -155,8 +155,9 @@ cat << !
     |   4    -  Replace website text   (replace: a,e,i by f,h,k)        |
     |   5    -  https downgrade attack (replace: https y http)          |
     |   6    -  ssh downgrade attack   (replace: SSH-1.99 by SSH-1.51)  |
-    |   7    -  Inject backdoor into html request (executable.exe)      |
-    |   8    -  Write your own filter and use morpheus to inject it     |
+    |   7    -  Rotate website document 180 degrees (CSS3 injection)    |
+    |   8    -  Inject backdoor into html request (executable.exe)      |
+    |   9    -  Write your own filter and use morpheus to inject it     |
     |                                                                   |
     |   F    -  FAQ (frequent ask questions)                            |
     |   E    -  exit/close Morpheus tool                                |

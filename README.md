@@ -51,7 +51,8 @@
     alor&naga (ettercap framework) || ir0ngeek (replace img) || seannicholls (rotate.eft)
     Most of the filters in morpheus framework have been writen be me except the ones described
     above, but this project will contemplate new external (authors) addictions found in the
-    fast network as the project continues to grow up (new releases).
+    fast network as the project continues to grow up (new releases), also new examples can
+    be found editing ettercap's etter.filter.examples file that will help us to write new ones.
 [ettercap linux man pages](https://linux.die.net/man/8/ettercap)
 
 <br />
