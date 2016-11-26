@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/MORPHEUS-1.1-brightgreen.svg?maxAge=259200)]()
+[![Version](https://img.shields.io/badge/MORPHEUS-1.2-brightgreen.svg?maxAge=259200)]()
 [![Stage](https://img.shields.io/badge/Release-developing-red.svg)]()
 [![Build](https://img.shields.io/badge/Supported_OS-linux-orange.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]()
