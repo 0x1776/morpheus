@@ -4,15 +4,13 @@
 [![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]()
 [![AUR](https://img.shields.io/aur/license/yaourt.svg)]()
 
+![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-banner.png)
+
 # Morpheus - automated ettercap TCP/IP Hijacking tool
     Version release : v1.2-Alpha
     Author : pedro ubuntu  [ r00t-3xp10it ]
     Distros Supported : Linux Ubuntu, Kali, Mint, Parrot OS
     Suspicious-Shell-Activity (SSA) RedTeam develop @2016
-
-
-# Framework Main Menu
-![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-banner.png)
 
 # LEGAL DISCLAMER
     The author does not hold any responsibility for the bad use
