@@ -42,5 +42,5 @@ if (ip.proto == TCP && tcp.dst == 80) {
    replace("</TITLE>", " ");  
    replace("<body>", " ");  
    replace("<BODY>", " ");  
-   msg("[Morpheus Filter] Contents injected...\n");
+   msg("[Morpheus Filter] Image injected and forward to target...\n");
  } 

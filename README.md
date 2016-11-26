@@ -48,8 +48,10 @@
     ettercap, zenity
 
 # Credits
-    alor&naga (ettercap framework) || ir0ngeek (first filters i've seen)
-    "Most of this examples are described in etter.filter (ettercap default install)"
+    alor&naga (ettercap framework) || ir0ngeek (replace img) || seannicholls (rotate.eft)
+    Most of the filters in morpheus framework have been writen be me except the ones described
+    above, but this project will contemplate new external (authors) addictions found in the
+    fast network as the project continues to grow up (new releases).
 [ettercap linux man pages](https://linux.die.net/man/8/ettercap)
 
 <br />
