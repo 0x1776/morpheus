@@ -47,10 +47,13 @@
 # Dependencies
     ettercap, zenity
 
+# Credits
+    alor&naga (ettercap framework) || ir0ngeek (first filters i've seen)
+    "Most of this examples are described in etter.filter (ettercap default install)"
 
 <br />
-# Framework Description Menu
-![morpheus v1.0-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-banner.png)
+# Framework help argument
+![morpheus v1.0-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-description.png)
 
 # Framework Main Menu
 ![morpheus v1.0-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-banner.png)
