@@ -50,6 +50,7 @@
 # Credits
     alor&naga (ettercap framework) || ir0ngeek (first filters i've seen)
     "Most of this examples are described in etter.filter (ettercap default install)"
+[ettercap linux man pages](https://linux.die.net/man/8/ettercap)
 
 <br />
 # Framework help argument

