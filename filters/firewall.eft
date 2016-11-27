@@ -1,0 +1,103 @@
+############################################################################
+#                                                                          #
+#  HTTPS Request/Response Filter  -  [ privacie filter ]                   #
+#  based on code from ALoR & NaGA                                          #
+#                                                                          #
+#  This program is free software; you can redistribute it and/or modify    #
+#  it under the terms of the GNU General Public License as published by    #
+#  the Free Software Foundation; either version 2 of the License, or       #
+#  (at your option) any later version.                                     #
+#                                                                          #
+############################################################################
+
+##
+#  This filter will act like a firewall reporting witch
+#  ip addr (ip:port) are connecting back to network. And If un-commented
+#  the last funtion will act as a d0s tool againts the sellected target ip addr.
+##
+
+
+##
+# requests from 192.168.1.67
+if (ip.src == '192.168.1.67' || ip.dst == '192.168.1.67') {
+  msg("[Morpheus] packet from 192.168.1.67 found...");
+    if (ip.proto == TCP && tcp.src == 443 || tcp.dst == 443) {
+      msg("[morpheus] host:192.168.1.67 -> port:443 HTTPS\n");
+    }else{
+    if (ip.proto == TCP && tcp.src == 445 || tcp.dst == 445) {
+      msg("[morpheus] host:192.168.1.67 -> port:445 SMB\n");
+    }else{
+    if (ip.proto == TCP && tcp.src == 80 || tcp.dst == 80) {
+      msg("[morpheus] host:192.168.1.67 -> port:80 HTTP\n");
+    }else{
+    if (ip.proto == TCP && tcp.src == 53 || tcp.dst == 53) {
+      msg("[morpheus] host:192.168.1.67 -> port:53 DOMAIN\n");
+    }
+    }
+    }
+    }
+}
+
+
+##
+# requests from 192.168.1.95 (android_pedro)
+if (ip.src == '192.168.1.95' || ip.dst == '192.168.1.95') {
+  msg("[Morpheus] packet from 192.168.1.95 (android) found...");
+    if (ip.proto == TCP && tcp.src == 443 || tcp.dst == 443) {
+      msg("[morpheus] host:192.168.1.95 -> port:443 HTTPS\n");
+    }else{
+    if (ip.proto == TCP && tcp.src == 445 || tcp.dst == 445) {
+      msg("[morpheus] host:192.168.1.95 -> port:445 SMB\n");
+    }else{
+    if (ip.proto == TCP && tcp.src == 80 || tcp.dst == 80) {
+      msg("[morpheus] host:192.168.1.95 -> port:80 HTTP\n");
+    }else{
+    if (ip.proto == TCP && tcp.src == 53 || tcp.dst == 53) {
+      msg("[morpheus] host:192.168.1.95 -> port:53 DOMAIN\n");
+    }
+    }
+    }
+    }
+}
+
+
+##
+# requests from 192.168.1.254
+if (ip.dst == '192.168.1.254' || ip.dst == '192.168.1.254') {
+ msg("[Morpheus] packet from 192.168.1.254 found...");
+    if (ip.proto == TCP && tcp.src == 443 || tcp.dst == 443) {
+      msg("[morpheus] host:192.168.1.254 -> port:443 HTTPS\n");
+    }else{
+    if (ip.proto == TCP && tcp.src == 445 || tcp.dst == 445) {
+      msg("[morpheus] host:192.168.1.254 -> port:445 SMB\n");
+    }else{
+    if (ip.proto == TCP && tcp.src == 80 || tcp.dst == 80) {
+      msg("[morpheus] host:192.168.1.254 -> port:80 HTTP\n");
+    }else{
+    if (ip.proto == TCP && tcp.src == 53 || tcp.dst == 53) {
+      msg("[morpheus] host:192.168.1.254 -> port:53 DOMAIN\n");
+    }
+    }
+    }
+    }
+}
+
+
+##
+# requests from 192.168.1.253
+if (ip.dst == '192.168.1.253' || ip.dst == '192.168.1.253') {
+ msg("[Morpheus] packet from 192.168.1.253 found...");
+}
+
+
+##
+# drop packet | kill connection ...
+# un-comment this funtion to filter any tcp/udp connections
+# made to OR from target ip addr (perform D0S againts ip addr)
+#
+#if (ip.dst == '192.168.1.65' || ip.dst == '192.168.1.65') {
+# msg("[Morpheus] packet from 192.168.1.65 found...");
+# msg("[Morpheus] droping target TCP/UDP packet...\n");
+# drop();
+#kill();
+#}
