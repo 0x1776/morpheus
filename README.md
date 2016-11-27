@@ -54,10 +54,11 @@
     file befor runing morpheus and set (USE_IPV6=DISABLED) to force ettercap to use IPV4
 
 # Dependencies
-    ettercap, zenity
+    ettercap, nmap, zenity
 
 # Credits
-    alor&naga (ettercap framework) || irongeek (replace img) || seannicholls (rotate 180º)
+    alor&naga (ettercap framework)  | nmap framework (fyodor)
+    filters: irongeek (replace img) | seannicholls (rotate 180º)
     Most of the filters in morpheus framework have been writen be me except the ones described
     above, but this project will contemplate new external (authors) addictions found in the
     fast network as the project continues to grow up (new releases), also new examples can
