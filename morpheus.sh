@@ -221,6 +221,11 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
   # clean up
   echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
   mv $IPATH/filters/firewall.bk $IPATH/filters/firewall.eft > /dev/null 2>&1
+  if [ -e $IPATH/credentials ]; then
+  mv $IPATH/credentials $IPATH/logs/credentials > /dev/null 2>&1
+  else
+  echo "do nothing" > /dev/null 2>&1
+  fi
   sleep 2
 
 else
