@@ -36,8 +36,7 @@
     target browser traffic to another ip address (domain) and also gives you the ability to build
     compile your filter from scratch and lunch it through morpheus framework.
 
-    "filters can be extended using browser languages like: javascript,css,flash,etc"...
-
+> filters can be extended using browser languages like: javascript,css,flash,etc"...
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-css.png)
 
 # Framework limitations
