@@ -22,20 +22,20 @@
 if (ip.src == '192.168.1.67' || ip.dst == '192.168.1.67') {
   msg("[Morpheus] packet from 192.168.1.67 found...");
     if (ip.proto == TCP && tcp.src == 80 || tcp.dst == 80) {
-      msg("[morpheus] host:192.168.1.67 port:80 proto:http");
+      msg("[morpheus] host:192.168.1.67 port:80 http");
         # log credentials into morpheus/logs/credentials_log
         if (regex(DECODED.data, ".*username.*")) {
          log(DECODED.data, "./credentials_log");
-         msg("[morpheus] credentials found, check logs...\n");
+         msg("[  ----  ] credentials found, check logs...\n");
     }else{
     if (ip.proto == TCP && tcp.src == 445 || tcp.dst == 445) {
-      msg("[morpheus] host:192.168.1.67 port:445 proto:smb\n");
+      msg("[morpheus] host:192.168.1.67 port:445 smb");
     }else{
     if (ip.proto == TCP && tcp.src == 443 || tcp.dst == 443) {
-      msg("[morpheus] host:192.168.1.67 port:443 proto:https\n");
+      msg("[morpheus] host:192.168.1.67 port:443 https");
     }else{
     if (ip.proto == TCP && tcp.src == 53 || tcp.dst == 53) {
-      msg("[morpheus] host:192.168.1.67 port:53 proto:domain\n");
+      msg("[morpheus] host:192.168.1.67 port:53 domain");
     }
     }
     }
@@ -49,16 +49,16 @@ if (ip.src == '192.168.1.67' || ip.dst == '192.168.1.67') {
 if (ip.src == '192.168.1.95' || ip.dst == '192.168.1.95') {
   msg("[Morpheus] packet from 192.168.1.95 (android) found...");
     if (ip.proto == TCP && tcp.src == 443 || tcp.dst == 443) {
-      msg("[morpheus] host:192.168.1.95 port:443 proto:https\n");
+      msg("[morpheus] host:192.168.1.95 port:443 https");
     }else{
     if (ip.proto == TCP && tcp.src == 445 || tcp.dst == 445) {
-      msg("[morpheus] host:192.168.1.95 port:445 proto:smb\n");
+      msg("[morpheus] host:192.168.1.95 port:445 smb");
     }else{
     if (ip.proto == TCP && tcp.src == 80 || tcp.dst == 80) {
-      msg("[morpheus] host:192.168.1.95 port:80 proto:http\n");
+      msg("[morpheus] host:192.168.1.95 port:80 http");
     }else{
     if (ip.proto == TCP && tcp.src == 53 || tcp.dst == 53) {
-      msg("[morpheus] host:192.168.1.95 port:53 proto:domain\n");
+      msg("[morpheus] host:192.168.1.95 port:53 domain");
     }
     }
     }
@@ -71,16 +71,16 @@ if (ip.src == '192.168.1.95' || ip.dst == '192.168.1.95') {
 if (ip.dst == '192.168.1.254' || ip.dst == '192.168.1.254') {
  msg("[Morpheus] packet from 192.168.1.254 found...");
     if (ip.proto == TCP && tcp.src == 443 || tcp.dst == 443) {
-      msg("[morpheus] host:192.168.1.254 port:443 proto:https\n");
+      msg("[morpheus] host:192.168.1.254 port:443 https");
     }else{
     if (ip.proto == TCP && tcp.src == 445 || tcp.dst == 445) {
-      msg("[morpheus] host:192.168.1.254 port:445 proto:smb\n");
+      msg("[morpheus] host:192.168.1.254 port:445 smb");
     }else{
     if (ip.proto == TCP && tcp.src == 80 || tcp.dst == 80) {
-      msg("[morpheus] host:192.168.1.254 port:80 proto:http\n");
+      msg("[morpheus] host:192.168.1.254 port:80 http");
     }else{
     if (ip.proto == TCP && tcp.src == 53 || tcp.dst == 53) {
-      msg("[morpheus] host:192.168.1.254 port:53 proto:domain\n");
+      msg("[morpheus] host:192.168.1.254 port:53 domain");
     }
     }
     }
@@ -93,16 +93,16 @@ if (ip.dst == '192.168.1.254' || ip.dst == '192.168.1.254') {
 if (ip.dst == '192.168.1.253' || ip.dst == '192.168.1.253') {
  msg("[Morpheus] packet from 192.168.1.253 found...");
     if (ip.proto == TCP && tcp.src == 443 || tcp.dst == 443) {
-      msg("[morpheus] host:192.168.1.253 -> port:443 HTTPS\n");
+      msg("[morpheus] host:192.168.1.253 port:443 https");
     }else{
     if (ip.proto == TCP && tcp.src == 445 || tcp.dst == 445) {
-      msg("[morpheus] host:192.168.1.253 -> port:445 SMB\n");
+      msg("[morpheus] host:192.168.1.253 port:445 smb");
     }else{
     if (ip.proto == TCP && tcp.src == 80 || tcp.dst == 80) {
-      msg("[morpheus] host:192.168.1.253 -> port:80 HTTP\n");
+      msg("[morpheus] host:192.168.1.253 port:80 http");
     }else{
     if (ip.proto == TCP && tcp.src == 53 || tcp.dst == 53) {
-      msg("[morpheus] host:192.168.1.253 -> port:53 DOMAIN\n");
+      msg("[morpheus] host:192.168.1.253 port:53 domain");
     }
     }
     }
