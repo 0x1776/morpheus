@@ -16,16 +16,40 @@
 ##
 
 
-# Filter only from source
-if (ip.src == '192.168.0.2') {
- msg("[Morpheus] packet droped from source...");
+# Filter packets from source
+if (ip.src == '192.168.1.67') {
+ msg("[Morpheus] packet from 192.168.1.67 found...");
+ msg("[Morpheus] packet FROM source (src) droped!");
+ drop();
  drop();
 kill();
 }
 
-# Filter only from destination
-if (ip.dst == '192.168.0.2') {
- msg("[Morpheus] packet droped from destination...\n");
+# Filter packets from destination
+if (ip.dst == '192.168.1.67') {
+ msg("[Morpheus] packet from 192.168.1.67 found...");
+ msg("[Morpheus] packet TO destination (dst) droped!");
+ drop();
  drop();
 kill();
 }
+
+
+
+
+##############################
+## DENIAL-OF-SERVICE ATTACK ##
+##############################
+##
+# kill IPv6 connections
+# un-comment this funtion to filter any tcp/udp connections
+# made to OR from target ip addr (perform D0S againts ip addr)
+#
+#if (eth.proto == IP6 && ipv6.src == '2001:db8::1' || ipv6.dst == '2001:db8::1') {
+# msg("[Morpheus] packet from 2001:db8::1 found...");
+# msg("[Morpheus] droping target IPv6 packets...\n...\n");
+# drop();
+# drop();
+#kill();
+#}
+

