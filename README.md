@@ -68,6 +68,8 @@
 # Framework help argument
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-description.png)
 
+# Framework option [9] running
+![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-option9.png)
 
 <br />
 ---
