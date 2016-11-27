@@ -22,31 +22,31 @@
 # replace the word 'a' by 'f'
 if (ip.proto == TCP && search(DATA.data, "a")){
  replace("a", "f");
- msg("[Morpheus Filter] A zapped from request...\n");
+ msg("[Morpheus] A zapped from request...\n");
 }
 
 # replace the word 'e' by 'h'
 if (ip.proto == TCP && search(DATA.data, "e")){
  replace("e", "h");
- msg("[Morpheus Filter] E zapped from request...\n");
+ msg("[Morpheus] E zapped from request...\n");
 }
 
 
 # replace the word 'i' by 'k'
 if (ip.proto == TCP && search(DATA.data, "i")){
  replace("i", "k");
- msg("[Morpheus Filter] I zapped from request...\n");
+ msg("[Morpheus] I zapped from request...\n");
 }
 
 
 # replace the word 'o' by 's'
 if (ip.proto == TCP && search(DATA.data, "o")){
  replace("o", "s");
- msg("[Morpheus Filter] O zapped from request...\n");
+ msg("[Morpheus] O zapped from request...\n");
 }
 
 # replace the word 'u' by 'x'
 if (ip.proto == TCP && search(DATA.data, "u")){
  replace("u", "x");
- msg("[Morpheus Filter] U zapped from request...\n");
+ msg("[Morpheus] U zapped from request...\n");
 }

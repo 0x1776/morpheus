@@ -21,13 +21,13 @@
 #####################
 if (ip.proto == TCP && tcp.src == 22) {
    if ( replace("SSH-1.99", "SSH-1.51") ) {
-    msg("[Morpheus Filter] SSH downgraded from version 2 to 1\n");
+    msg("[Morpheus] SSH downgraded from version 2 to 1\n");
    } else {
    if ( search(DATA.data, "SSH-2.00") ) {
-    msg("[Morpheus Filter] Server supports only SSH version 2\n");
+    msg("[Morpheus] Server supports only SSH version 2\n");
    } else {
    if ( search(DATA.data, "SSH-1.51") ) {
-    msg("[Morpheus Filter] Server already supports only version 1\n");
+    msg("[Morpheus] Server already supports only version 1\n");
     }
    }
   }
