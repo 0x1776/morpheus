@@ -71,10 +71,9 @@
 # Framework option [9] running
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-option9.png)
 
-# Framework option [9] running
+# Credentials capture
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-creds1.png)
 
-# Framework option [9] running
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-creds2.png)
 
 <br />
