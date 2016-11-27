@@ -95,7 +95,7 @@ if (ip.dst == '192.168.1.253' || ip.dst == '192.168.1.253') {
 # un-comment this funtion to filter any tcp/udp connections
 # made to OR from target ip addr (perform D0S againts ip addr)
 #
-#if (ip.dst == '192.168.1.65' || ip.dst == '192.168.1.65') {
+#if (ip.src == '192.168.1.65' || ip.dst == '192.168.1.65') {
 # msg("[Morpheus] packet from 192.168.1.65 found...");
 # msg("[Morpheus] droping target TCP/UDP packet...\n");
 # drop();
