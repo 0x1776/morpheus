@@ -48,6 +48,7 @@
 
 > incorrect number of token (///) in TARGET !!
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-error1.png)
+
     morpheus by default will run ettercap using IPv6 (USE_IPV6=ACTIVE) like its previous
     configurated into 'settings' file, if you are reciving this error than edit settings
     file befor runing morpheus and set (USE_IPV6=DISABLED) to force ettercap to use IPV4
