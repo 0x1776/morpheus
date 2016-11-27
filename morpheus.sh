@@ -241,8 +241,8 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
   mv $IPATH/filters/firewall.bk $IPATH/filters/firewall.eft > /dev/null 2>&1
   # port-forward
   echo "0" > /proc/sys/net/ipv4/ip_forward
-  if [ -e $IPATH/credentials ]; then
-  mv $IPATH/credentials $IPATH/logs/credentials > /dev/null 2>&1
+  if [ -e $IPATH/credentials_log ]; then
+  mv $IPATH/credentials_log $IPATH/logs/credentials_log > /dev/null 2>&1
   else
   echo "do nothing" > /dev/null 2>&1
   fi

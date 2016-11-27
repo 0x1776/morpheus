@@ -29,6 +29,9 @@ PROMPT_DISPLAY=-▷
 -----------------
 WRITE_LOGFILES=NO
 -----------------
+# how to read the logfiles stored?
+# etterlog -c firewall.ecp
+
 
 
 
