@@ -37,7 +37,7 @@ Colors;
 # ---------------------
 if [ $(id -u) != "0" ]; then
 echo ${RedF}[☠]${white} we need to be root to run this script...${Reset};
-echo ${RedF}[☠]${white} execute [ sudo ./venom.sh ] on terminal ${Reset};
+echo ${RedF}[☠]${white} execute [ sudo ./morpheus.sh ] on terminal ${Reset};
 exit
 else
 echo "root user" > /dev/null 2>&1

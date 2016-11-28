@@ -13,10 +13,10 @@
 ##
 #  This filter will act like a firewall reporting OR blocking
 #  connections inside Local Lan of the sellected ip address.
-#
 #  It also dumps to a [ logfile_creds ] logins captured under
 #  mitm + filter execution In services: http,ssh,telnet,ftp...  
 ##
+
 
 
 
@@ -55,8 +55,6 @@ if (ip.src == '192.168.1.67' && ip.proto == TCP && tcp.dst == 22) {
          msg("[morpheus] |_ credentials found, logfile stored...\n");
     }
 }
-
-
 
 
 ##
