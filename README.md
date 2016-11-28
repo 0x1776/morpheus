@@ -45,8 +45,7 @@
     1º - morpheus will fail if target system its protected againt arp poison atacks
     2º - downgrade attacks will fail if browser target as installed no-http addon's
     3º - target system sometimes needs to clear netcache to arp poison be effective
-    4º - replacement string must have the same length as original string to replace
-         "eg. replace("word_hello", "hello_word"); <-- the same number of leters"
+
 
 > incorrect number of token (///) in TARGET !!
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-error1.png)
