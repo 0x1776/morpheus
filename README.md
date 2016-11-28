@@ -5,7 +5,7 @@
 [![AUR](https://img.shields.io/aur/license/yaourt.svg)]()
 
 # Morpheus - automated ettercap TCP/IP Hijacking tool
-![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-banner.png)
+![morpheus v1.5-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-banner.png)
 
     Version release : v1.5-Alpha
     Author : pedro ubuntu  [ r00t-3xp10it ]
@@ -31,6 +31,7 @@
 
     "morpheus automates the above described steps in a easy-automated-user-friendly-interface"
 
+
 # What can we acomplish by using filters?
     morpheus ships with a collection of etter filters writen be me to acomplish various tasks:
     replacing images in webpages, replace text in webpages, inject payloads using html <form> tag
@@ -38,18 +39,18 @@
     target browser traffic to another ip address (domain) and also gives you the ability to build
     compile your filter from scratch and lunch it through morpheus framework.
 
-> filters can be extended using browser languages like: javascript,css,flash,etc"...
+    "filters can be extended using browser languages like: javascript,css,flash,etc"...
 
 > In this example we are using 'CSS3' to trigger webpage 180º rotation
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-css.png)
 > In this example we are using 'head HTML tag' to inject an rediretion url into target request
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-refresh.png)
 
+
 # Framework limitations
     1º - morpheus will fail if target system its protected againt arp poison atacks
     2º - downgrade attacks will fail if browser target as installed no-http addon's
     3º - target system sometimes needs to clear netcache for arp poison be effective
-
 
 > incorrect number of token (///) in TARGET !!
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-error1.png)
@@ -57,6 +58,7 @@
     morpheus by default will run ettercap using IPv6 (USE_IPV6=ACTIVE) like its previous
     configurated into 'settings' file, if you are reciving this error than edit settings
     file befor runing morpheus and set (USE_IPV6=DISABLED) to force ettercap to use IPV4
+
 
 # Dependencies
     ettercap, nmap, zenity
@@ -71,10 +73,10 @@
 [ettercap linux man pages](https://linux.die.net/man/8/ettercap)
 
 <br />
-# Framework option [9] running
+# Framework option [9-firewall] running
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-option9.png)
 
-# Credentials capture
+# Credentials capture (http,smb)
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-creds1.png)
 
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-creds2.png)
