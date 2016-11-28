@@ -1,7 +1,7 @@
 #!/bin/sh
 ###
 # morpheus - automated ettercap TCP/IP Hijacking tool
-# Author: pedr0 Ubuntu [r00t-3xp10it] version: 1.3
+# Author: pedr0 Ubuntu [r00t-3xp10it] version: 1.4
 # Suspicious-Shell-Activity (SSA) RedTeam develop @2016
 # codename: blue_dreams [ GPL licensed ]
 ###
@@ -118,7 +118,7 @@ done
 # Variable declarations
 # ---------------------
 dtr=`date | awk '{print $4}'`        # grab current hour
-V3R="1.3"                            # module version number
+V3R="1.4"                            # module version number
 DiStR0=`awk '{print $1}' /etc/issue` # grab distribution -  Ubuntu or Kali
 IPATH=`pwd`                          # grab morpheus.sh install path
 PrompT=`cat $IPATH/settings | egrep -m 1 "PROMPT_DISPLAY" | cut -d '=' -f2` > /dev/null 2>&1
