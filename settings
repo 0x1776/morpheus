@@ -7,12 +7,13 @@
 #                                                                            #
 #    CHANGING THIS SETTINGS WILL AFFECT 'morpheus.sh' WAY OF WORKING         #
 #    WARNING: remmenber that values to be changed are case sensitive         #
+#                                                                            #
 ##############################################################################
 
 
 
 
-### prompt displays available
+### prompt displays (morpheus) available
 # chose your own 'personalized prompt'.                                       
 # -▷   -▶   '>'  ☭   ✿   ☯   ☠   ☆   ➽
 ------------------
@@ -24,20 +25,22 @@ PROMPT_DISPLAY=-▷
 
 ### OUTPUT MORPHEUS SCANS TO A LOGFILE?
 # this setting will record ettercap
-# reports into morpheus logs folder.
+# reports into morpheus/logs folder.
 # accepted values are: YES or NO
 -----------------
 WRITE_LOGFILES=NO
 -----------------
 # how to read the logfiles stored?
-# etterlog -c firewall.ecp
+# cd logs && etterlog -c firewall.ecp
 
 
 
 
 
-### ENABLE IPV6 ARP POISON?
-# by default morpheus runs againts IPv4
+### ENABLE IPv6 ARP POISON?
+# by default morpheus lunch arp poison againt IPv6 protocol
+# IF your facing a "token (///) Error" then change the next value
+# to "DISABLED" to force morpheus framework to run arp againts IPv4. 
 # accepted values are: ACTIVE or DISABLED
 ----------------
 USE_IPV6=ACTIVE
