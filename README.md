@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/MORPHEUS-1.4-brightgreen.svg?maxAge=259200)]()
+[![Version](https://img.shields.io/badge/MORPHEUS-1.5-brightgreen.svg?maxAge=259200)]()
 [![Stage](https://img.shields.io/badge/Release-developing-red.svg)]()
 [![Build](https://img.shields.io/badge/Supported_OS-linux-orange.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]()
@@ -7,7 +7,7 @@
 # Morpheus - automated ettercap TCP/IP Hijacking tool
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-banner.png)
 
-    Version release : v1.4-Alpha
+    Version release : v1.5-Alpha
     Author : pedro ubuntu  [ r00t-3xp10it ]
     Distros Supported : Linux Ubuntu, Kali, Mint, Parrot OS
     Suspicious-Shell-Activity (SSA) RedTeam develop @2016
@@ -44,7 +44,7 @@
 # Framework limitations
     1º - morpheus will fail if target system its protected againt arp poison atacks
     2º - downgrade attacks will fail if browser target as installed no-http addon's
-    3º - target system sometimes needs to clear netcache to arp poison be effective
+    3º - target system sometimes needs to clear netcache for arp poison be effective
 
 
 > incorrect number of token (///) in TARGET !!
@@ -58,7 +58,7 @@
     ettercap, nmap, zenity
 
 # Credits
-    alor&naga (ettercap framework)  | nmap framework (fyodor)
+    alor&naga (ettercap framework)  | fyodor (nmap framework)
     filters: irongeek (replace img) | seannicholls (rotate 180º)
     Most of the filters in morpheus framework have been writen be me except the ones described
     above, but this project will contemplate new external (authors) addictions found in the

