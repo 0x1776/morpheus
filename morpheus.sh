@@ -243,6 +243,7 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
   # clean up
   echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
   mv $IPATH/filters/firewall.bk $IPATH/filters/firewall.eft > /dev/null 2>&1
+  rm $IPATH/output/firewall.ef > /dev/null 2>&1
   # port-forward
   echo "0" > /proc/sys/net/ipv4/ip_forward
   sleep 2
@@ -322,6 +323,7 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
   # clean up
   echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
   mv $IPATH/filters/skelleton.bk $IPATH/filters/skelleton.eft > /dev/null 2>&1
+  rm $IPATH/output/skelleton.ef > /dev/null 2>&1
   # port-forward
   echo "0" > /proc/sys/net/ipv4/ip_forward
   sleep 2

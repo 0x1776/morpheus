@@ -29,6 +29,8 @@
     3º - attacker modifies webpage response (contents)
     4º - modified packet its forward back to target host
 
+    "morpheus automates the above described steps in a easy-automated-user-friendly-interface"
+
 # What can we acomplish by using filters?
     morpheus ships with a collection of etter filters writen be me to acomplish various tasks:
     replacing images in webpages, replace text in webpages, inject payloads using html <form> tag
