@@ -45,7 +45,9 @@ if (ip.dst == 'IpAdDR' && ip.proto == TCP && tcp.dst == 80) {
 #####################
 if (ip.dst == 'IpAdDR' && ip.proto == TCP && tcp.src == 80) {
   if search(DATA.data, "RePlAcE")){
-    replace("RePlAcE", "InJeC"); # note: replacement string must have the same length of injected one.
+    # note: since we are replacing webpage body letters its advice 'for'
+    # the replacement string to have the same length of the injected one.
+    replace("RePlAcE", "InJeC");
     msg("[morpheus] |_ packet forward back to target ✔\n");
   }
 }
