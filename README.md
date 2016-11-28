@@ -39,11 +39,9 @@
     compile your filter from scratch and lunch it through morpheus framework.
 
 > filters can be extended using browser languages like: javascript,css,flash,etc"...
-
-In this example we are using 'CSS3' to trigger webpage 180º rotation
+> In this example we are using 'CSS3' to trigger webpage 180º rotation
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-css.png)
-In this example we are using 'head HTML tag' to inject an rediretion url into target request
-
+> In this example we are using 'head HTML tag' to inject an rediretion url into target request
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-refresh.png)
 
 # Framework limitations
