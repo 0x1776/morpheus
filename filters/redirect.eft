@@ -11,8 +11,8 @@
 ############################################################################
 
 ##
-#  This filter will redirect target request 
-#  to the specified ip address. <http-equiv>
+#  This filter will redirect target requests under mitm
+#  attacks to the specified redirect url. <http-equiv>
 ##
 
 
