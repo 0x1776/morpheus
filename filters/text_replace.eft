@@ -22,7 +22,7 @@
 ## Zap Content Encoding ##
 ##########################
 if (ip.dst == 'IpAdDR' && ip.proto == TCP && tcp.dst == 80) {
-  msg("[morpheus] host:IpAdDR   [ <> ]  found...");
+  msg("[morpheus] host:IpAdDR   [ <- ]  port:80 http ☆");
   msg("[Morpheus] | status: replacing packet content!");
   if (search(DATA.data, "gzip")) {
     replace("gzip", "    "); # note: four spaces In the replacement string
