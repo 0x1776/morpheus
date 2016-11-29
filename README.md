@@ -77,9 +77,12 @@
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-option9.png)
 
 # Credentials capture (http,smb)
-![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-creds1.png)
+
+![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-creds5.png)
 
 ![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-creds2.png)
+
+![morpheus v1.2-Alpha](https://dl.dropboxusercontent.com/u/21426454/morpheus-creds1.png)
 
 <br />
 ---
